@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>男童复色策略报告</title>
+<style>:root{
+  --bg:#f5f2ec; --bg2:#efeae1; --surface:#fffefb; --surface2:#f8f5ee;
+  --ink:#1b1a18; --ink2:#3c3934; --muted:#6f6a61; --faint:#a29c92;
+  --line:#e5dfd3; --line2:#d4ccbd;
+  --accent:#b34a25; --accent-soft:#f4e4da;
+  --blue:#2b4a6f; --blue-soft:#e5ecf3;
+  --green:#2f6b52; --green-soft:#e3eee8;
+  --radius:14px; --radius-s:9px;
+  --shadow:0 1px 2px rgba(28,24,18,.04),0 10px 26px -16px rgba(28,24,18,.22);
+  --serif:"Source Han Serif SC","Noto Serif SC","Songti SC",SimSun,"Times New Roman",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,"Courier New",monospace;
+}
+html[data-theme="dark"]{
+  --bg:#141310; --bg2:#1a1814; --surface:#1f1d18; --surface2:#232019;
+  --ink:#f2ede2; --ink2:#ddd7ca; --muted:#a49d90; --faint:#7d766a;
+  --line:#332f27; --line2:#443e33;
+  --accent:#e07a4e; --accent-soft:#3a2419;
+  --blue:#9dc0e6; --blue-soft:#1d2b3a;
+  --green:#8ec7a9; --green-soft:#1b2b23;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.72;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(760px 420px at 10% -10%,rgba(179,74,37,.07),transparent 62%),
+             radial-gradient(700px 420px at 94% -4%,rgba(43,74,111,.06),transparent 64%);
+}
+::selection{background:rgba(179,74,37,.18)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px;border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ---------- 顶部 ---------- */
+.hd{
+  position:relative;z-index:1;max-width:1120px;margin:0 auto;
+  padding:26px 28px 12px;
+}
+.hd-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}
+.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);flex:0 0 auto}
+.brand .bt{font-size:22px;font-weight:800;letter-spacing:.01em;color:var(--ink)}
+.brand .bs{font-size:11px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.theme-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);
+  width:34px;height:34px;border-radius:999px;cursor:pointer;font-size:13px;
+  display:inline-flex;align-items:center;justify-content:center;transition:.18s;
+}
+.theme-btn:hover{color:var(--ink);border-color:var(--line2);transform:translateY(-1px)}
+.hd h1{
+  font-family:var(--serif);font-weight:700;letter-spacing:.02em;
+  font-size:clamp(23px,2.8vw,31px);line-height:1.3;margin:13px 0 5px;
+}
+.hd h1 em{font-style:normal;color:var(--accent)}
+.hd-sub{color:var(--muted);font-size:13.5px;margin:0}
+.hd-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font-size:12px;color:var(--faint)}
+.hd-meta b{color:var(--ink2);font-weight:600;margin-left:2px}
+
+/* ---------- Tab ---------- */
+.tabs{
+  position:sticky;top:0;z-index:20;display:flex;gap:8px;max-width:1120px;margin:0 auto;
+  padding:10px 28px 12px;background:var(--bg);border-bottom:1px solid var(--line);
+}
+.tabs button{
+  flex:1 1 0;appearance:none;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);border:1.5px solid var(--line);border-radius:12px;
+  padding:10px 14px;color:var(--muted);font-family:var(--sans);transition:.18s;
+}
+.tabs button i{
+  font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.06em;
+  color:var(--faint);border:1px solid var(--line2);border-radius:6px;padding:2px 6px;
+}
+.tabs button b{display:block;font-size:14px;font-weight:700;color:var(--ink2);line-height:1.3}
+.tabs button s{display:block;text-decoration:none;font-size:11px;color:var(--faint);margin-left:auto}
+.tabs button:hover{border-color:var(--line2)}
+.tabs button.on{
+  background:var(--accent);border-color:var(--accent);box-shadow:0 4px 14px rgba(180,74,37,.22);
+}
+.tabs button.on i{color:#fff;border-color:rgba(255,255,255,.45)}
+.tabs button.on b{color:#fff}
+.tabs button.on s{color:rgba(255,255,255,.82)}
+html[data-theme="dark"] .tabs{background:var(--bg)}
+@media (max-width:780px){
+  .tabs{padding:8px 14px 10px;gap:6px}
+  .tabs button s{display:none}
+  .tabs button{padding:9px 10px}
+}
+
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:10px 28px 40px}
+.panel{display:none}
+.panel.on{display:block;animation:rise .32s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.p-head{margin:8px 0 16px}
+.p-head h2{font-family:var(--serif);font-size:clamp(19px,2.1vw,24px);font-weight:700;letter-spacing:.01em;margin:0}
+.p-head p{color:var(--muted);font-size:13.5px;margin:6px 0 0}
+
+/* ---------- 通用组件 ---------- */
+.note{font-size:12.5px;color:var(--muted);background:var(--surface2);border:1px dashed var(--line2);border-radius:var(--radius-s);padding:10px 14px;margin:16px 0 0}
+.note b{color:var(--ink2)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+.toolbar input[type="search"]{
+  border:1px solid var(--line);background:var(--surface);border-radius:999px;
+  padding:9px 16px;font-family:var(--sans);font-size:13px;color:var(--ink);
+  outline:none;min-width:240px;flex:1;max-width:360px;transition:.18s;
+}
+.toolbar input[type="search"]::placeholder{color:var(--faint)}
+.toolbar input[type="search"]:focus{border-color:var(--line2);box-shadow:0 0 0 3px var(--accent-soft)}
+.seg{display:inline-flex;background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{
+  appearance:none;border:0;background:transparent;cursor:pointer;font-family:var(--sans);
+  font-size:12.5px;color:var(--muted);padding:6px 13px;border-radius:999px;transition:.16s;
+}
+.seg button:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+.seg button.on{background:var(--ink);color:var(--bg);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.16)}
+html[data-theme="dark"] .seg button.on{background:var(--ink);color:#14120f}
+.seg.sub{display:flex;gap:8px;background:transparent;border:0;padding:0;margin:2px 0 4px;flex-wrap:wrap}
+.seg.sub button{font-size:13px;font-weight:600;color:var(--ink2);background:var(--surface);
+  border:1.5px solid var(--line2);border-radius:999px;padding:9px 16px;transition:.16s ease}
+.seg.sub button:hover{border-color:var(--accent);color:var(--accent2)}
+.seg.sub button.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;
+  box-shadow:0 3px 10px -4px rgba(179,74,37,.7)}
+
+.count-badge{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 9px;visibility:hidden}
+.count-badge.show{visibility:visible}
+.empty{display:none;text-align:center;color:var(--faint);font-size:13px;padding:26px 0}
+.empty.show{display:block}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}
+.tbl-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl-wrap thead th{
+  text-align:left;font-size:11.5px;letter-spacing:.04em;color:var(--muted);font-weight:600;
+  padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.tbl-wrap td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink2)}
+.tbl-wrap tbody tr:last-child td{border-bottom:0}
+.tbl-wrap tbody tr:nth-child(even) td{background:rgba(0,0,0,.012)}
+html[data-theme="dark"] .tbl-wrap tbody tr:nth-child(even) td{background:rgba(255,255,255,.018)}
+.tbl-wrap tbody tr:hover td{background:var(--surface2)}
+.tbl-wrap td.cat,.tbl-wrap th.cat{font-weight:600;color:var(--ink);white-space:nowrap}
+.tbl-wrap td.num,.tbl-wrap th.num{text-align:center;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;font-size:11.5px;font-family:var(--mono);padding:2px 8px;border-radius:6px;background:var(--surface2);color:var(--muted);border:1px solid var(--line)}
+.tag.p2{background:var(--accent-soft);color:var(--accent);border-color:transparent;font-weight:700}
+.tag.p3{background:var(--green-soft);color:var(--green);border-color:transparent}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12.5px;
+  background:var(--surface2);border:1px solid var(--line);border-radius:999px;
+  padding:3px 10px 3px 7px;cursor:pointer;transition:.15s;white-space:nowrap;
+}
+.chip:hover{border-color:var(--line2);background:var(--surface)}
+.chip .sw{width:11px;height:11px;border-radius:50%;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+.chip.grad .sw{border-radius:4px}
+.chip.p0{background:var(--accent-soft);border-color:rgba(179,74,37,.22);color:var(--accent);font-weight:600}
+.chip.hit{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+/* 只保留相关列，避免置灰导致整片发灰 */
+table.focus-add th.c-drop,table.focus-add td.c-drop{display:none}
+table.focus-drop th.c-add,table.focus-drop td.c-add{display:none}
+
+.points{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:13px 18px 14px;margin:0 0 14px;box-shadow:var(--shadow);
+}
+.points .pt-h{font-size:11.5px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:7px}
+.points ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.points li{position:relative;padding-left:15px;font-size:13.2px;color:var(--ink2);line-height:1.62}
+.points li::before{content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--line2)}
+
+.rank-grid .rank-card{}
+.seg-label{font-size:11.5px;color:var(--faint);letter-spacing:.08em;margin-left:4px}
+.rank-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px;box-shadow:var(--shadow);transition:.2s}
+.rank-card:hover{transform:translateY(-2px);border-color:var(--line2)}
+.rank-card .h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:10px}
+.rank-card .h .n{font-family:var(--serif);font-size:16px;font-weight:700}
+.rank-card .h .m{font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.rank-card .rank{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:13px;color:var(--ink2);border-top:1px dashed var(--line)}
+.rank-card .rank:first-of-type{border-top:0}
+.rank-card .rank .i{font-family:var(--mono);font-size:10.5px;color:var(--faint);width:16px;flex:0 0 auto}
+.rank-card .rank.top{color:var(--ink);font-weight:600}
+.rank-card .rank.top .i{color:var(--accent)}
+.rank-card .rank .nm{display:inline-flex;align-items:center;gap:6px}
+.rank-card .rank .nm span:first-child{width:11px;height:11px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+.chips.full{display:flex;flex-wrap:wrap;gap:6px}
+.s5tbl{table-layout:fixed;width:100%;min-width:0;border-spacing:0}
+.s5tbl th,.s5tbl td{vertical-align:top}
+.s5tbl td .chips{display:flex;flex-direction:column;flex-wrap:nowrap;gap:4px;align-items:flex-start}
+.s5tbl td .chip{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s5tbl th{white-space:normal;font-size:11px;line-height:1.35}
+.s5tbl .cat{width:104px}
+.s5tbl .chip{font-size:10.5px;padding:1.5px 6px}
+.s5tbl td:nth-child(7) .chips{padding-right:2px}
+.s5tbl th:last-child,.s5tbl td:last-child{padding-right:10px}
+
+/* 01 门槛时间轴 */
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 12px;box-shadow:var(--shadow)}
+.tl-cap{font-size:11px;color:var(--faint);margin-bottom:8px;letter-spacing:.04em}
+.tl-bar{width:100%;border-collapse:separate;border-spacing:5px 0;table-layout:fixed;margin:0 -5px}
+.tl-seg{border-radius:9px;padding:8px 6px;color:#fff;text-align:center;vertical-align:middle}
+.tl-seg b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;line-height:1.5}
+.tl-seg span{display:block;font-size:10.5px;opacity:.94;line-height:1.5;white-space:nowrap}
+.tag.p-p0,.tag.p-p1,.tag.p-p2,.tag.p-p3,.tag.p-p4,.tag.p-p5{
+  color:#fff;border-color:transparent;font-weight:700;font-family:var(--mono);letter-spacing:.03em;
+  min-width:38px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.10)
+}
+.tag.p-p0{background:#8f3312}
+.tag.p-p1{background:#b34a25}
+.tag.p-p2{background:#c17a1c}
+.tag.p-p3{background:#517d5c}
+.tag.p-p4{background:#3f6478}
+.tag.p-p5{background:#7d766a}
+.tag{font-size:12px;padding:2.5px 10px;letter-spacing:.02em}
+html[data-theme="dark"] .tag.p-p0{background:#c2542a}
+html[data-theme="dark"] .tag.p-p1{background:#c96a3d}
+html[data-theme="dark"] .tag.p-p2{background:#c78a2b}
+html[data-theme="dark"] .tag.p-p3{background:#5f9169}
+html[data-theme="dark"] .tag.p-p4{background:#4a768c}
+html[data-theme="dark"] .tag.p-p5{background:#8b8578}
+.p-p0{background:#b34a25}.p-p1{background:#c8702f}.p-p2{background:#c9992f}
+.p-p3{background:#4f7a58}.p-p4{background:#3c5f74}.p-p5{background:#8b8578}
+html[data-theme="dark"] .p-p0{background:#a84726}
+html[data-theme="dark"] .p-p1{background:#a95f28}
+html[data-theme="dark"] .p-p2{background:#9c7726}
+html[data-theme="dark"] .p-p3{background:#3f6347}
+html[data-theme="dark"] .p-p4{background:#33505f}
+html[data-theme="dark"] .p-p5{background:#6f6a5f}
+
+.tl-legend{margin:12px 0 20px}
+.grid3,.wgrid-t{width:100%;border-collapse:separate;border-spacing:12px;table-layout:fixed;margin:-12px 0 0}
+.grid3 td,.wgrid-t td{width:33.33%;vertical-align:top;padding:0}
+.grid3 td.ph,.wgrid-t td.ph{border:0}
+.tl-item{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:var(--surface)}
+.tl-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.tl-item b{font-family:var(--mono);font-size:11.5px;color:var(--ink);margin-right:6px}
+.tl-item .nm{font-size:12.5px;color:var(--ink);font-weight:600}
+.tl-item .ds{display:block;font-size:12px;color:var(--muted);line-height:1.55;margin-top:4px}
+
+
+.sub-h{font-size:12px;letter-spacing:.1em;color:var(--muted);font-weight:700;margin:0 0 10px}
+
+/* 02 复色数量卡片 */
+.wc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:15px 17px 14px;box-shadow:var(--shadow);transition:.2s}
+.wc:hover{transform:translateY(-2px);border-color:var(--line2)}
+.wc-name{font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.4}
+.wc-num{font-family:var(--serif);font-size:29px;line-height:1.15;color:var(--accent);margin:4px 0 2px}
+.wc-num s{text-decoration:none;font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-left:4px}
+.dots{margin:7px 0 6px;font-size:0}
+.dots i{display:inline-block;width:13px;height:5px;border-radius:3px;background:var(--line2);margin-right:4px}
+.dots i.on{background:var(--accent)}
+.wc-cap{font-size:11.5px;color:var(--faint)}
+
+
+/* 03 明细：子分区 */
+.seg.big{margin:4px 0 16px;display:flex;gap:6px;background:transparent;border:0;padding:0}
+.seg.big button{flex:1 1 0;padding:10px 16px;font-size:13px;border:1.5px solid var(--line);
+  border-radius:11px;background:var(--surface);color:var(--muted);font-weight:600}
+.seg.big button.on{background:var(--ink);border-color:var(--ink);color:var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.14)}
+.pane{display:none}
+.pane.on{display:block}
+.tabs-sm{font-size:0;margin:0 -6px 12px 0}
+.tabs-sm button{display:inline-block;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+  font-family:var(--sans);font-size:12.5px;padding:6px 14px;margin:0 6px 6px 0;border-radius:999px;cursor:pointer;transition:.16s}
+.tabs-sm button:hover{color:var(--ink);border-color:var(--line2)}
+.tabs-sm button.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.s3meta{font-size:12px;color:var(--muted);margin:0 0 10px;font-family:var(--mono)}
+.s3meta:empty{display:none}
+.s3tbl{table-layout:fixed}
+.s3tbl td.cname{font-weight:600;color:var(--ink)}
+.s3tbl td.num{font-family:var(--mono);color:var(--ink2)}
+.reason{display:inline-block;font-size:12px;padding:2px 9px;border-radius:7px;white-space:nowrap}
+.reason.good{background:var(--accent-soft);color:var(--accent)}
+.reason.mid{background:var(--blue-soft);color:var(--blue)}
+.reason.flat{background:var(--surface2);color:var(--muted)}
+.reason.bad{background:var(--green-soft);color:var(--green)}
+
+
+#s4Tbl{table-layout:fixed}
+#s4Tbl td .chips{gap:5px}
+#s4Tbl td.c-p0 .chips{gap:4px}
+#s4Tbl td{padding-left:14px;padding-right:14px}
+
+.foot{padding:16px 18px 34px}
+
+.grid4{width:100%;border-collapse:separate;border-spacing:10px;table-layout:fixed;margin:-10px 0 0}
+.grid4 td{width:25%;vertical-align:top;padding:0}
+.grid4 td.ph{border:0}
+.cc{display:block;border:1px solid var(--line);border-radius:11px;background:var(--surface);padding:10px 12px}
+.cc-l .sw{width:26px;height:26px;border-radius:50%;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.cc-m{margin-top:7px}
+.cc-n{display:block;font-size:13px;font-weight:600;color:var(--ink);line-height:1.3}
+.cc .reason{display:inline-block;margin-top:4px;font-size:11px}
+.cc-r{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.cc-r b{font-family:var(--mono);font-size:15px;color:var(--ink);letter-spacing:-.02em}
+.more-btn{display:block;margin:14px auto 2px;appearance:none;cursor:pointer;font-family:var(--sans);
+  font-size:12.5px;color:var(--ink2);background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:7px 20px;transition:.16s}
+.more-btn:hover{border-color:var(--line2);color:var(--ink)}
+@media (max-width:900px){.grid4 td{width:50%}}
+
+.legend3{display:table;width:100%;border-collapse:separate;border-spacing:10px 0;margin:2px -10px 14px}
+.legend3 .lg{display:table-cell;width:33.33%;vertical-align:top;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:9px;padding:9px 12px}
+.legend3 .lg b{display:block;font-size:12.5px;color:var(--ink);margin-bottom:3px}
+.legend3 .lg span{display:block;font-size:11.5px;color:var(--muted);line-height:1.55}
+@media (max-width:820px){.legend3,.legend3 .lg{display:block;width:auto}.legend3 .lg{margin-bottom:8px}}
+
+/* 季节趋势：视图标题 + 口径卡 */
+.s5view{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 12px}
+.s5view .vnow{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.s5view .vwin{font-family:var(--mono);font-size:11.5px;color:#fff;background:var(--accent);
+  border-radius:999px;padding:3px 10px;letter-spacing:0}
+.s5view .vsub{font-size:11.5px;color:var(--muted)}
+
+.legend3.n1{max-width:520px;margin-left:0}
+.legend3 .lg{transition:.16s}
+.legend3 .lg.on{border-left-color:var(--accent);background:var(--accent-soft)}
+.legend3 .lg .win{display:block;font-family:var(--mono);font-style:normal;font-size:11px;
+  color:var(--accent);margin:1px 0 4px;letter-spacing:0}
+@media (max-width:820px){.legend3.n1{max-width:none}}
+
+/* 分品类明细：口径卡（两列） */
+.klegend{display:table;width:100%;border-collapse:separate;border-spacing:10px 0;margin:2px -10px 14px}
+.klegend .kl{display:table-cell;width:50%;vertical-align:top;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:9px;padding:9px 12px}
+.klegend .kl b{display:block;font-size:12.5px;color:var(--ink);margin-bottom:3px}
+.klegend .kl span{display:block;font-size:11.5px;color:var(--muted);line-height:1.55}
+@media (max-width:820px){.klegend,.klegend .kl{display:block;width:auto}.klegend .kl{margin-bottom:8px}}
+.klegend.n1{max-width:620px}
+.klegend.n3 .kl{width:33.33%}
+.klegend.n4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;border-spacing:0;margin:2px 0 14px}
+.klegend.n4 .kl{display:block;width:auto;min-width:0}
+.klegend.n4 .kl.kl-miss{border-left-color:#b4552e}
+.klegend.n4 .kl.kl-miss b{color:#b4552e}
+@media (max-width:1100px){.klegend.n4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.klegend.n4{grid-template-columns:1fr}}
+
+/* 外网色卡：与明细列同名的标记 */
+.xmk{display:inline-block;font-style:normal;font-size:10px;line-height:1.5;padding:0 6px;
+  border-radius:5px;margin-left:5px;vertical-align:1px;letter-spacing:.02em}
+.tag.rest-tag{background:var(--surface2);color:var(--muted);border:1px solid var(--line)}
+
+.s3note{font-size:11.5px;color:var(--muted);line-height:1.6;padding:8px 0 2px;
+  border-top:1px dashed var(--line);margin-top:2px}
+.s3sum .cl .rest{color:var(--muted);font-size:12px}
+.xmk.add{background:var(--accent-soft);color:var(--accent)}
+.xmk.drop{background:var(--green-soft);color:var(--green)}
+
+/* 外网调研：P0-P3 一句话汇总（颜色单行铺开） */
+.s3sum{border:1px solid var(--line);border-radius:11px;background:var(--surface);padding:4px 14px;margin:0 0 14px}
+.s3sum .sr{display:grid;grid-template-columns:306px 1fr;align-items:center;gap:14px;
+  padding:8px 0;border-top:1px dashed var(--line)}
+.s3sum .sr:first-child{border-top:0}
+.s3sum .srl{display:flex;align-items:center;gap:8px;min-width:0}
+.s3sum .srl .tag{flex:0 0 auto}
+.s3sum .srl em{font-style:normal;font-size:11px;color:var(--muted);line-height:1.3;white-space:nowrap}
+.s3sum .cl{display:flex;align-items:center;flex-wrap:nowrap;gap:12px;min-width:0;
+  font-size:12.5px;color:var(--ink);white-space:nowrap;overflow:hidden}
+.s3sum .ci{display:inline-flex;align-items:center;flex:0 0 auto}
+.s3sum .cl .sw{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+.s3sum .cl .rest{font-style:normal;color:var(--muted);font-size:11.5px;flex:0 0 auto}
+@media (max-width:820px){
+  .s3sum .sr{grid-template-columns:1fr;gap:4px}
+  .s3sum .cl{flex-wrap:wrap;white-space:normal;gap:8px}
+}
+
+/* 口径说明 */
+.note.kouj{display:flex;flex-direction:column;gap:4px}
+.note.kouj b{color:var(--fg);font-weight:700;margin-right:2px}
+.note.kouj .kk{margin-top:4px;color:var(--muted)}
+
+/* ---------- 浏览提醒 ---------- */
+.hintbar{max-width:1120px;margin:0 auto;padding:0 24px 4px}
+.hintbar .hb{display:flex;align-items:center;gap:10px;background:var(--accent-soft);
+  border:1px solid rgba(179,74,37,.22);border-radius:10px;padding:9px 13px;font-size:12.5px;color:var(--ink2)}
+.hintbar .hb .ico{flex:0 0 auto;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.hintbar .hb b{color:var(--accent2);font-weight:700}
+.hintbar .hb .cnt{margin-left:auto;flex:0 0 auto;font-size:11.5px;color:var(--muted);
+  border:1px solid rgba(179,74,37,.22);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.hintbar .hb .cnt i{font-style:normal;color:var(--accent2);font-weight:700}
+.subhint{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);margin:0 0 12px}
+.subhint .cntrest{margin-left:auto}
+.subhint.lead{margin:2px 0 22px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+.subhint.sub2{margin:16px 0 10px}
+.subhint .cntrest{border:1px solid var(--line2);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--ink2)}
+/* 未看的 tab 加角标 */
+.tabs button .nd{position:absolute;top:6px;right:8px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.tabs button{position:relative}
+.tabs button.seen .nd{display:none}
+/* 切换提示 */
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);z-index:99;
+  background:var(--ink);color:var(--bg);font-size:13px;line-height:1.5;padding:10px 16px;border-radius:10px;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.28s ease;max-width:88vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast b{color:var(--accent-light,#f0b49a)}
+html[data-theme="dark"] .toast{background:#efe7e0;color:#171312}
+html[data-theme="dark"] .toast b{color:#a8451f}
+@media(max-width:680px){.brand .bt{font-size:18px}.hintbar{padding:0 14px 4px}}
+
+/* ---- 外网色彩调研 v4 ---- */
+:root{--fg:var(--ink);--accent2:var(--accent)}
+/* 品类标签：放大、更容易点 */
+#s3Tabs{margin:0 0 22px}
+#s3Tabs button{font-size:14px;padding:10px 20px;margin:0 9px 9px 0;border-radius:12px;letter-spacing:.2px}
+#s3Tabs button.on{box-shadow:0 4px 14px rgba(0,0,0,.14)}
+/* 分品类复色明细：站外有站内缺 列 */
+#s4Tbl td.c-miss .chips{flex-direction:column;flex-wrap:nowrap;gap:4px;align-items:center;width:100%}
+#s4Tbl td .chips{display:flex;flex-direction:column;flex-wrap:nowrap;gap:4px;align-items:center;width:100%}
+#s4Tbl th{text-align:center;vertical-align:middle}
+#s4Tbl th.cat{text-align:left}
+#s4Tbl td{vertical-align:middle}
+#s4Tbl{min-width:0;width:100%}
+#s4Tbl td{padding-top:9px;padding-bottom:9px}
+#s4Table{overflow-x:auto;overflow-y:visible}
+#s4Tbl .chip{white-space:nowrap;flex:0 0 auto}
+#s4Tbl td .chips{gap:4px}
+#s4Tbl td.c-p0 .chips{gap:4px}
+#s4Tbl th.c-miss{color:#b4552e;background:#fdf5f0;border-bottom-color:#e9c9b6}
+#s4Tbl td.c-miss .chip{border-style:dashed}
+#s4Tbl .miss-none2{color:var(--muted);font-size:12px}
+#s4Tbl td .chips{width:106px;margin:0 auto}
+#s4Tbl td .chip{width:100%;min-width:0;justify-content:flex-start}
+#s4Tbl td.c-p0 .chip,#s4Tbl td.c-add .chip,#s4Tbl td.c-drop .chip,#s4Tbl td.c-miss .chip{box-sizing:border-box}
+/* 分品类复色明细：色块同行排列，不换行 */
+#s4Tbl td .chips,#s4Tbl td.c-p0 .chips{flex-direction:column;flex-wrap:nowrap;align-items:center;gap:4px;width:100%}
+#s4Tbl td{padding-left:10px;padding-right:10px}
+#s4Tbl .chip{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-size:10.5px;padding:1.5px 6px;letter-spacing:0;line-height:1.45}
+#s4Tbl .chip:hover{border-color:var(--line2);background:var(--surface)}
+#s4Tbl .chip.p0{background:var(--accent-soft);border-color:#e0b8a4;color:#a8431f}
+#s4Tbl .chip.hit{box-shadow:none}
+#s4Tbl .chip .sw{width:10px;height:10px}
+.sw.mix{background-image:repeating-linear-gradient(45deg,#d8cfc0 0 4px,#f5efe4 4px 8px)}
+.s31note{color:var(--muted);font-size:13px;margin:2px 0 14px;line-height:1.7}
+.s31note b{color:var(--ink2)}
+.b31{margin:0 0 26px}
+.b31h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.b31h>b{font-family:var(--serif);font-size:16px;letter-spacing:.3px}
+.b31h>span{color:var(--muted);font-size:12.5px}
+.sumwrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 8px}
+.sumcard{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 18px 12px}
+.sumhd{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  padding:0 0 11px;margin:0 0 4px;border-bottom:1px solid var(--line)}
+.sumhd b{font-size:14px;color:var(--ink);font-weight:600;letter-spacing:.2px}
+.sumhd span{font-size:12px;color:var(--muted)}
+.sumlist{display:block}
+.sumit{display:grid;grid-template-columns:20px 1fr auto;align-items:center;gap:11px;
+  padding:9px 2px;border-bottom:1px dashed var(--line);font-size:14px}
+.sumit:last-child{border-bottom:0;padding-bottom:4px}
+.sumit .sw{width:20px;height:20px;border-radius:6px;border:1px solid rgba(0,0,0,.16)}
+.sumit .no{display:none}
+.sumit .nm{display:flex;align-items:center;gap:7px;color:var(--ink);line-height:1.3;min-width:0}
+.sumit .nm>span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sumit .pc{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-style:normal;white-space:nowrap}
+.sumit .mk{margin-left:2px;font-size:10.5px;padding:0 5px;font-weight:400}
+.sumwrap{margin-bottom:4px}
+.mklegend{margin:14px 0 24px;padding-top:2px}
+.sumempty2{color:var(--muted);font-size:13px;padding:12px 2px}
+
+
+
+.sumempty{color:var(--muted);font-size:13px}
+.mklegend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:0 0 22px;color:var(--muted);font-size:12.5px}
+.mklegend>span{display:inline-flex;align-items:center;gap:6px}
+.mk{font-size:11px;padding:1px 6px;border-radius:999px;white-space:nowrap;font-weight:500;
+  color:#2f5d8a;background:rgba(58,110,165,.12);border:1px solid rgba(58,110,165,.30)}
+.mk.try{color:#8a5a1f;background:rgba(196,132,44,.13);border:1px dashed rgba(196,132,44,.6)}
+.rk{display:flex;flex-direction:column}
+.rkrow{display:grid;grid-template-columns:26px 20px minmax(110px,1.3fr) minmax(120px,1.5fr) minmax(80px,1.5fr) 54px;
+  align-items:center;gap:8px;padding:7px 4px;border-bottom:1px dashed var(--line);font-size:14px}
+.rkrow:last-child{border-bottom:0}
+.rkrow .no{color:var(--faint);font-family:var(--mono);font-size:12px;text-align:right}
+.rkrow .sw{width:20px;height:20px;border-radius:6px;border:1px solid rgba(0,0,0,.16)}
+.rkrow .nm{color:var(--ink);line-height:1.35}
+.rkrow .nm em{display:block;font-style:normal;color:var(--faint);font-size:11.5px}
+.rkrow .tags{display:flex;gap:5px;flex-wrap:wrap}
+.rkrow .tg{font-size:11.5px;padding:2px 7px;border-radius:999px;text-align:center;white-space:nowrap}
+.rkrow .tg.in{color:var(--green);background:var(--green-soft);border:1px solid rgba(47,107,82,.18)}
+.rkrow .tg.no2{color:var(--accent);background:var(--accent-soft);border:1px solid rgba(179,74,37,.28);font-weight:600}
+.rkrow .bar{height:7px;border-radius:4px;background:var(--surface2);overflow:hidden;border:1px solid var(--line)}
+.rkrow .bar>i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),#cf7a4f)}
+.rkrow .pc{font-family:var(--mono);font-size:12.5px;color:var(--ink2);text-align:right}
+.rkrow.miss .bar>i{background:linear-gradient(90deg,#9a6a2a,#c99a4a)}
+.miss-none{color:var(--muted);font-size:13.5px;padding:8px 2px}
+.grid31{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.c31{display:flex;align-items:center;gap:9px;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+.c31 .sw{width:26px;height:26px;border-radius:8px;border:1px solid rgba(0,0,0,.16);flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.c31 .tx{min-width:0;line-height:1.3}
+.c31 .tx b{display:block;font-weight:500;font-size:13.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c31 .tx em{font-style:normal;font-size:11px;color:var(--faint);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c31 .pc{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink2);font-style:normal;flex:0 0 auto}
+.c31.miss{border-color:rgba(179,74,37,.3);background:var(--accent-soft)}
+.c31.miss .pc{color:var(--accent);font-weight:600}
+.c31 .mk{align-self:flex-start;margin-top:1px;font-size:10px;padding:0 4px}
+@media(max-width:1000px){.grid31{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sumwrap{grid-template-columns:1fr;gap:14px}
+  }
+@media(max-width:760px){
+  .rkrow{grid-template-columns:22px 18px minmax(90px,1fr) minmax(90px,1.2fr) 50px;row-gap:4px}
+  .rkrow .bar{display:none}
+  .grid31{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sumrow>b{min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-top">
+    <div class="brand">
+      <span class="dot"></span>
+      <span class="bt">男童复色策略</span>
+      <span class="bs">Color Strategy · 2026.10</span>
+    </div>
+    <button class="theme-btn" id="themeBtn" title="切换主题"><span id="themeIcon">◐</span></button>
+  </div>
+  <h1>先看谁值得复色，再看复几个色，<em>最后看复什么颜色</em></h1>
+  <div class="hd-meta">
+    <span><b>男童婴 · 一层类目</b></span>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-p="p1" class="on"><i>01</i><b>复色门槛</b><s>谁值得复色</s></button>
+  <button data-p="p2"><i>02</i><b>复色数量</b><s>每个品类复几个色</s></button>
+  <button data-p="p3"><i>03</i><b>复色明细</b><s>加什么色 · 汰什么色</s></button>
+</nav>
+
+<div class="hintbar"><div class="hb" id="navHint"><span class="ico">!</span><span>本报告分 <b>3 个部分</b>：复色门槛 → 复色数量 → 复色明细，点上方标签即可切换。</span><span class="cnt" id="navCnt">已看 <i>1</i>/3</span></div></div>
+
+<main class="wrap">
+
+  <section class="panel on" id="p1">
+    <div class="p-head">
+      <h2>复色门槛：谁值得复色</h2>
+      <p>按上架时间分 P0–P5，再用近 15 天销量日均下限卡一遍，过线的款才进复色池。</p>
+    </div>
+
+    <div class="tl" id="s1Timeline"></div>
+    <div class="tl-legend" id="s1Legend"></div>
+
+    <div class="sub-h">门槛明细</div>
+    <div id="s1Table"></div>
+    <div class="note">优先级越高，越优先投入色数。</div>
+  </section>
+
+  <section class="panel" id="p2">
+    <div class="p-head">
+      <h2>复色数量：每个品类复几个色</h2>
+
+    </div>
+    <div class="toolbar">
+      <input id="q2" type="search" placeholder="筛选品类">
+      <span class="hint" id="q2hint"></span>
+    </div>
+    <div class="wgrid" id="s2Body"></div>
+  </section>
+
+  <section class="panel" id="p3">
+    <div class="p-head">
+      <h2>复色明细</h2>
+    </div>
+
+    <div class="seg big" id="subTabs">
+      <button data-s="s32" class="on">分品类复色明细</button>
+      <button data-s="s31">外网色彩调研</button>
+      <button data-s="s33">色彩季节趋势</button>
+    </div>
+
+    <div class="subhint lead"><span>复色明细含 <b>3 个子页</b>，记得逐个看</span><span class="cntrest" id="subCnt">已看 1/3</span></div>
+
+        <div class="pane" id="s31">
+      <div class="subhint"><span>共 <b>8 个品类</b>，切换品类逐个看：先看顶部汇总，再看色彩排名与站内缺色，最后核对全色明细</span><span class="cntrest" id="s3Cnt">已看 1/8</span></div>
+      <div class="tabs-sm" id="s3Tabs"></div>
+      <div id="s3Table"></div>
+    </div>
+
+<div class="pane on" id="s32">
+      <div class="klegend n4">
+        <div class="kl"><b>复色 P0</b><span>站内需求色与站内/站外热度色的交集。</span></div>
+        <div class="kl"><b>加色 TOP5</b><span>按站内供需差顺位补足 5 个。</span></div>
+        <div class="kl"><b>汰换 TOP5</b><span>站内供过于求、供需差最负的 5 个色，缩减或退出。</span></div>
+        <div class="kl kl-miss"><b>站外有 · 站内缺</b><span>外网有、站内没有的颜色，见右侧明细，可作加色尝试。</span></div>
+      </div>
+      <div class="toolbar">
+        <input id="q" type="search" placeholder="搜品类或颜色">
+        <span class="count-badge" id="qCount"></span>
+      </div>
+      <div class="tbl-wrap" id="s4Table"></div>
+      <div class="empty" id="s4Empty">没有匹配的品类或颜色</div>
+    </div>
+
+    <div class="pane" id="s33">
+      <div class="toolbar">
+        <div class="subhint"><span>先看 <b>全表对照</b> 摸清整体，再切换 <b>9月 / 冬季 / 夏季</b> 单独看每个阶段</span></div>
+<div class="seg" id="s5Mode"></div>
+        <div class="seg sub" id="s5Sub"></div>
+      </div>
+      <div class="legend3" id="s5Legend"></div>
+      <div class="s5view" id="s5View"></div>
+      <div id="s5Body"><div class="tbl-wrap"><table class="s5tbl"><thead><tr><th class="cat">一级品类</th><th>9月TOP5 （秋冬换季）</th><th>冬季TOP5</th><th>冬季本季趋势上升TOP5</th><th>冬季换季前移TOP5</th><th>夏季TOP5</th><th>夏季本季趋势上升TOP5</th><th>夏季换季前移TOP5</th></tr></thead><tbody><tr><td class="cat">套装</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span></div></td></tr><tr><td class="cat">T恤/POLO</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="荧光黄"><span class="sw" style="background:#d6e83f"></span>荧光黄</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="红橙"><span class="sw" style="background:#e05a24"></span>红橙</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td></tr><tr><td class="cat">牛仔裤</td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="海蓝"><span class="sw" style="background:#2f6f9e"></span>海蓝</span></div></td><td><div class="chips"><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="海蓝"><span class="sw" style="background:#2f6f9e"></span>海蓝</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="海蓝"><span class="sw" style="background:#2f6f9e"></span>海蓝</span><span class="chip" data-color="鲜蓝"><span class="sw" style="background:#1f74d6"></span>鲜蓝</span><span class="chip" data-color="孔雀蓝"><span class="sw" style="background:#12707a"></span>孔雀蓝</span></div></td><td><div class="chips"><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="孔雀蓝"><span class="sw" style="background:#12707a"></span>孔雀蓝</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span></div></td><td><div class="chips"><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span></div></td><td><div class="chips"><span class="chip" data-color="海蓝"><span class="sw" style="background:#2f6f9e"></span>海蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="粉蓝"><span class="sw" style="background:#bdd7e9"></span>粉蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="海蓝"><span class="sw" style="background:#2f6f9e"></span>海蓝</span><span class="chip" data-color="橄榄绿"><span class="sw" style="background:#6b6b38"></span>橄榄绿</span><span class="chip" data-color="草绿"><span class="sw" style="background:#5c9b45"></span>草绿</span></div></td></tr><tr><td class="cat">功能服</td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="巧克力"><span class="sw" style="background:#43291a"></span>巧克力</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="橙色"><span class="sw" style="background:#e5842b"></span>橙色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="粉红"><span class="sw" style="background:#efb3c0"></span>粉红</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="鲜蓝"><span class="sw" style="background:#1f74d6"></span>鲜蓝</span><span class="chip" data-color="柠檬黄"><span class="sw" style="background:#e3e13c"></span>柠檬黄</span><span class="chip" data-color="军绿"><span class="sw" style="background:#4c5433"></span>军绿</span></div></td></tr><tr><td class="cat">棉服/羽绒服</td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="军绿"><span class="sw" style="background:#4c5433"></span>军绿</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="奶白"><span class="sw" style="background:#f8f3e6"></span>奶白</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="浅紫"><span class="sw" style="background:#cbb7da"></span>浅紫</span><span class="chip" data-color="银灰"><span class="sw" style="background:#b7bcc1"></span>银灰</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="军绿"><span class="sw" style="background:#4c5433"></span>军绿</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="祖母绿"><span class="sw" style="background:#1c6a4c"></span>祖母绿</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="粉红"><span class="sw" style="background:#efb3c0"></span>粉红</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span></div></td></tr><tr><td class="cat">卫衣/连帽衫</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="灰白"><span class="sw" style="background:#e6e4de"></span>灰白</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span></div></td><td><div class="chips"><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="灰白"><span class="sw" style="background:#e6e4de"></span>灰白</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="海绿"><span class="sw" style="background:#2f7d68"></span>海绿</span><span class="chip" data-color="深绿"><span class="sw" style="background:#224d33"></span>深绿</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td></tr><tr><td class="cat">外套夹克</td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="深绿"><span class="sw" style="background:#224d33"></span>深绿</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span></div></td><td><div class="chips"><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="海蓝"><span class="sw" style="background:#2f6f9e"></span>海蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="海绿"><span class="sw" style="background:#2f7d68"></span>海绿</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="猩红"><span class="sw" style="background:#c0143c"></span>猩红</span><span class="chip" data-color="深绿"><span class="sw" style="background:#224d33"></span>深绿</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span></div></td></tr><tr><td class="cat">长裤</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span></div></td></tr><tr><td class="cat">衬衫/马甲</td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="深红"><span class="sw" style="background:#8a1d24"></span>深红</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="驼色"><span class="sw" style="background:#c2a077"></span>驼色</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="粉红"><span class="sw" style="background:#efb3c0"></span>粉红</span><span class="chip" data-color="砖红"><span class="sw" style="background:#a8452c"></span>砖红</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="奶白"><span class="sw" style="background:#f8f3e6"></span>奶白</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span></div></td></tr><tr><td class="cat">背心上衣</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="银灰"><span class="sw" style="background:#b7bcc1"></span>银灰</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span></div></td><td><div class="chips"><span class="chip" data-color="银灰"><span class="sw" style="background:#b7bcc1"></span>银灰</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="橙红"><span class="sw" style="background:#df4a29"></span>橙红</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="深绿"><span class="sw" style="background:#224d33"></span>深绿</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="深绿"><span class="sw" style="background:#224d33"></span>深绿</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="红橙"><span class="sw" style="background:#e05a24"></span>红橙</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="银灰"><span class="sw" style="background:#b7bcc1"></span>银灰</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td></tr><tr><td class="cat">连体/背带</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="亮钢蓝"><span class="sw" style="background:#4a7fa8"></span>亮钢蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="奶白"><span class="sw" style="background:#f8f3e6"></span>奶白</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="麦色"><span class="sw" style="background:#dcc49a"></span>麦色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="粉红"><span class="sw" style="background:#efb3c0"></span>粉红</span><span class="chip" data-color="奶白"><span class="sw" style="background:#f8f3e6"></span>奶白</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="深棕"><span class="sw" style="background:#422c1f"></span>深棕</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="奶白"><span class="sw" style="background:#f8f3e6"></span>奶白</span></div></td></tr><tr><td class="cat">短裤</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="抹茶绿"><span class="sw" style="background:#9aab6b"></span>抹茶绿</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="红橙"><span class="sw" style="background:#e05a24"></span>红橙</span><span class="chip" data-color="祖母绿"><span class="sw" style="background:#1c6a4c"></span>祖母绿</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="湖蓝"><span class="sw" style="background:#2aa5c2"></span>湖蓝</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span></div></td></tr><tr><td class="cat">毛衣/开衫/针织</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="酒红"><span class="sw" style="background:#6c1f2f"></span>酒红</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span></div></td><td><div class="chips"><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="亮钢蓝"><span class="sw" style="background:#4a7fa8"></span>亮钢蓝</span><span class="chip" data-color="红橙"><span class="sw" style="background:#e05a24"></span>红橙</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="酒红"><span class="sw" style="background:#6c1f2f"></span>酒红</span><span class="chip" data-color="咖啡"><span class="sw" style="background:#5f4630"></span>咖啡</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span></div></td></tr><tr><td class="cat">正装</td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="铁锈"><span class="sw" style="background:#9c4a25"></span>铁锈</span></div></td><td><div class="chips"><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="浅绿"><span class="sw" style="background:#a9c99a"></span>浅绿</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="卡其"><span class="sw" style="background:#b9a37a"></span>卡其</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="铁锈"><span class="sw" style="background:#9c4a25"></span>铁锈</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="酒红"><span class="sw" style="background:#6c1f2f"></span>酒红</span><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span></div></td></tr><tr><td class="cat">泳衣泳裤</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td><td><div class="chips"><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="祖母绿"><span class="sw" style="background:#1c6a4c"></span>祖母绿</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="湖蓝"><span class="sw" style="background:#2aa5c2"></span>湖蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span></div></td><td><div class="chips"><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="橙色"><span class="sw" style="background:#e5842b"></span>橙色</span></div></td><td><div class="chips"><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="橙色"><span class="sw" style="background:#e5842b"></span>橙色</span><span class="chip" data-color="黄绿"><span class="sw" style="background:#b4c95b"></span>黄绿</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span></div></td></tr><tr><td class="cat">打底/压缩</td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td><td><div class="chips"><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="玫红"><span class="sw" style="background:#c74f7d"></span>玫红</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="深灰"><span class="sw" style="background:#5a5a5a"></span>深灰</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="米白"><span class="sw" style="background:#f3ecdd"></span>米白</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="杏色"><span class="sw" style="background:#eab98c"></span>杏色</span><span class="chip" data-color="灰色"><span class="sw" style="background:#8a8a8a"></span>灰色</span></div></td></tr><tr><td class="cat">传统服饰</td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="酒红"><span class="sw" style="background:#6c1f2f"></span>酒红</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span></div></td><td><div class="chips"><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="深红"><span class="sw" style="background:#8a1d24"></span>深红</span></div></td><td><div class="chips"><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="灰白"><span class="sw" style="background:#e6e4de"></span>灰白</span><span class="chip" data-color="亚麻"><span class="sw" style="background:#d8c9ad"></span>亚麻</span></div></td><td><div class="chips"><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="酒红"><span class="sw" style="background:#6c1f2f"></span>酒红</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span></div></td><td><div class="chips"><span class="chip" data-color="宝蓝"><span class="sw" style="background:#1b48a0"></span>宝蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span><span class="chip" data-color="深棕"><span class="sw" style="background:#422c1f"></span>深棕</span><span class="chip" data-color="酒红"><span class="sw" style="background:#6c1f2f"></span>酒红</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span></div></td><td><div class="chips"><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="绿色"><span class="sw" style="background:#3f7d51"></span>绿色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="花色/混色"><span class="sw" style="background:linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)"></span>花色/混色</span></div></td></tr><tr><td class="cat">防晒衫</td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span></div></td><td><div class="chips"><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="橙色"><span class="sw" style="background:#e5842b"></span>橙色</span><span class="chip" data-color="孔雀蓝"><span class="sw" style="background:#12707a"></span>孔雀蓝</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span></div></td><td><div class="chips"><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="橙红"><span class="sw" style="background:#df4a29"></span>橙红</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="浅灰"><span class="sw" style="background:#cbcbcb"></span>浅灰</span><span class="chip" data-color="白色"><span class="sw" style="background:#ffffff"></span>白色</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="蓝色"><span class="sw" style="background:#2f6cb0"></span>蓝色</span><span class="chip" data-color="藏青/深蓝"><span class="sw" style="background:#1e2c50"></span>藏青/深蓝</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="天蓝"><span class="sw" style="background:#7cbbe0"></span>天蓝</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="浅蓝"><span class="sw" style="background:#aacbe6"></span>浅蓝</span><span class="chip" data-color="银灰"><span class="sw" style="background:#b7bcc1"></span>银灰</span><span class="chip" data-color="姜黄"><span class="sw" style="background:#c99a1d"></span>姜黄</span></div></td><td><div class="chips"><span class="chip" data-color="复合/多色"><span class="sw" style="background:linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"></span>复合/多色</span><span class="chip" data-color="红色"><span class="sw" style="background:#c62f2f"></span>红色</span><span class="chip" data-color="黄色"><span class="sw" style="background:#e8c62f"></span>黄色</span><span class="chip" data-color="黑色"><span class="sw" style="background:#17171a"></span>黑色</span><span class="chip" data-color="军绿"><span class="sw" style="background:#4c5433"></span>军绿</span></div></td></tr></tbody></table></div></div>
+      <div class="note" id="s5Hint"></div>
+    </div>
+  </section>
+
+</main>
+
+<script>const DATA = {"section1": {"header": ["类目", "分类", "上架时间范围", "优先级", "推荐类型", "近15天销量日均最低值限定"], "rows": [["男童男婴", "7日新款", "近7天", "P0", "7天内上架热卖款", "5（P50）"], ["男童男婴", "当月新款", "近8-30天", "P1", "8-30天内上架热卖款", "5（P50）"], ["男童男婴", "3个月内款", "近31天-90天", "P2", "31天-90天内上架热卖款", "10（P75）"], ["男童男婴", "去年上架应季款", "T365±60", "P3", "去年同期上架，去年同期热卖", "10（P75）"], ["男童男婴", "长青款", "近90-305天", "P4", "非应季长青款", "10（P75）"], ["男童男婴", "老款", "425天以上", "P5", "上架时间超1年近期热卖款", "15（≈ P90）"]]}, "section2": [{"cat": "套装", "range": "3-6", "width": "6"}, {"cat": "T恤/polo", "range": "2-6", "width": "6"}, {"cat": "卫衣/连帽衫", "range": "2-5", "width": "5"}, {"cat": "长裤", "range": "4-5", "width": "5"}, {"cat": "连体/背带", "range": "3-4", "width": "4"}, {"cat": "牛仔裤", "range": "3-5", "width": "5"}, {"cat": "外套夹克", "range": "3-5", "width": "5"}, {"cat": "短裤", "range": "2-4", "width": "4"}, {"cat": "衬衫/马甲", "range": "3", "width": "3"}, {"cat": "功能服", "range": "2-3", "width": "2"}, {"cat": "毛衣/开衫/针织", "range": "3", "width": "3"}, {"cat": "泳衣泳裤", "range": "2-4", "width": "4"}, {"cat": "棉服/羽绒服", "range": "4-6", "width": "5"}, {"cat": "背心上衣", "range": "3-4", "width": "4"}, {"cat": "正装", "range": "2-5", "width": "5"}, {"cat": "防晒衫", "range": "2-3", "width": "3"}, {"cat": "打底/压缩", "range": "2", "width": "2"}, {"cat": "传统服饰", "range": "2-3", "width": "2"}], "section3": ["套装", "长裤", "毛衣针织开衫", "外套夹克", "卫衣连帽衫", "棉服羽绒服", "T恤polo", "连体背带"], "section4": {"intro": ["混色(Mixed Color)是几乎全品类头号\"加色\"色：套装(+19.06)、短裤(+37.37)、背心上衣(+31.19)、T恤(+28.06)、连体/背带(+20.28)、卫衣(+21.88)、防晒衫(+16.95)供需差最大，站内热度极高——各品类优先扩充混色/花色及色阶。", "黑色两极分化明显：功能服(+5.58)、牛仔裤(+10.51)、棉服/羽绒服(+14.98)、打底/压缩(+29.07)、外套夹克(+18.28)为加色第一；但套装(-7.79)、连体/背带(-8.11)、短裤(-8.65)、毛衣(-8.90)、背心上衣(-9.44)黑色供过于求，需汰换减量——黑色在利基/高客单品类仍是主力，在走量基础款品类已饱和。", "汰换共性：红、藏青、白、粉红等基础色在走量品类严重供过于求（T恤红-5.75、卫衣红-10.86、短裤红-12.18、衬衫混色-36.82），转化率低，适合缩减配色。", "核心走量色早已竞争过度：白、黑、红、藏青占比高而供需差为负，说明这些常规色库存过剩，宣导重点应转向扩混色/特色色、减基础红/白，而非继续堆基础色。"], "rows": [{"cat": "套装", "p0": ["复合/多色", "蓝"], "add": ["绿", "杏", "咖啡", "浅棕", "米"], "drop": ["黑", "白", "红", "藏青", "宝蓝"]}, {"cat": "T恤/POLO", "p0": ["复合/多色", "黑"], "add": ["红橙", "深绿", "灰", "绿", "咖啡"], "drop": ["红", "粉红", "藏青", "黄", "橙"]}, {"cat": "牛仔裤", "p0": ["黑", "复合/多色", "海蓝"], "add": ["亮蓝", "粉蓝", "宝蓝", "太空灰", "橄榄绿"], "drop": ["蓝", "浅蓝", "花色", "天蓝", "亮钢蓝"]}, {"cat": "功能服", "p0": ["黑", "红", "蓝", "白"], "add": ["奶白", "亮蓝", "黄", "银灰", "青铜"], "drop": ["复合/多色", "深绿", "宝蓝", "浅灰", "粉红"]}, {"cat": "棉服/羽绒服", "p0": ["黑", "蓝", "藏青"], "add": ["翡翠绿", "板岩灰", "驼", "浅紫", "浅棕"], "drop": ["红", "白", "绿", "黄", "浅绿"]}, {"cat": "卫衣/连帽衫", "p0": ["复合/多色", "黑"], "add": ["灰白相间", "白", "卡其", "绿", "酒红"], "drop": ["红", "粉红", "玫红", "杏", "浅灰"]}, {"cat": "外套夹克", "p0": ["黑", "藏青"], "add": ["卡其", "浅棕", "宝蓝", "红橙", "军绿"], "drop": ["复合/多色", "红", "粉红", "深绿", "浅蓝"]}, {"cat": "长裤", "p0": ["黑", "卡其"], "add": ["白", "深灰", "浅灰", "军绿", "花色"], "drop": ["复合/多色", "红", "杏", "粉红", "咖啡"]}, {"cat": "衬衫/马甲", "p0": ["白", "黑", "红"], "add": ["绿", "藏青", "蓝", "卡其", "杏"], "drop": ["复合/多色", "花色", "奶白", "孔雀蓝", "象牙白"]}, {"cat": "背心上衣", "p0": ["复合/多色", "白"], "add": ["银灰", "深绿", "卡其", "米", "绿"], "drop": ["黑", "橙", "蓝", "灰", "杏"]}, {"cat": "连体/背带", "p0": ["复合/多色", "蓝"], "add": ["藏青", "天蓝", "奶白", "米", "深棕"], "drop": ["白", "黑", "灰", "深绿", "粉红"]}, {"cat": "短裤", "p0": ["复合/多色", "卡其"], "add": ["军绿", "浅蓝", "天蓝", "宝蓝", "浅灰"], "drop": ["红", "银灰", "白", "黑", "花色"]}, {"cat": "毛衣/开衫/针织", "p0": ["复合/多色", "藏青"], "add": ["卡其", "咖啡", "天蓝", "米", "红橙"], "drop": ["黑", "粉红", "红", "深绿", "杏"]}, {"cat": "正装", "p0": ["卡其"], "add": ["天蓝", "杏", "浅蓝", "绿", "白"], "drop": ["灰", "酒红", "米", "粉红", "藏青"]}, {"cat": "泳衣泳裤", "p0": ["蓝", "藏青", "天蓝", "黑"], "add": ["红", "花色", "白", "橙", "亮蓝"], "drop": ["复合/多色", "卡其", "猩红", "棕", "紫罗兰"]}, {"cat": "打底/压缩", "p0": ["黑", "复合/多色", "米", "灰"], "add": ["藏青", "天蓝", "海蓝", "浅蓝", "花色"], "drop": ["杏", "白", "浅灰", "蓝", "深灰"]}, {"cat": "传统服饰", "p0": ["白", "藏青", "酒红"], "add": ["复合/多色", "绿", "深红", "宝蓝", "橙"], "drop": ["黑", "红", "灰", "米", "卡其"]}, {"cat": "防晒衫", "p0": ["复合/多色", "黑"], "add": ["军绿", "黄绿", "红", "孔雀蓝", "深天蓝"], "drop": ["花色", "天蓝", "浅蓝", "亮蓝", "浅绿"]}]}, "section5": {"intro": ["冬季几乎每个品类TOP5都含黑色，且多数排第一：T恤、外套夹克、功能服、棉服羽绒、打底、衬衫、牛仔裤", "夏季套装、卫衣连帽、背心、连体、长裤、防晒、短裤的TOP1全是复合/多色;", "到冬季，复合/多色仍多在TOP5内但位次普遍后移（让位给黑色/藏青）", "冬季换季前移TOP5中白色系频繁出现：衬衫（白/花色/粉红/砖红/卡其）、连体（白）、套装（白）、长裤（浅灰/白）", "深色（黑/藏青）是全年占比主盘色；浅色/白系在换季间隙中频繁出现，在季末提前进场开启下一季——夏季季末预埋秋冬（黑/军绿/卡其），冬季季末预埋春季（白/卡其/粉彩），换季前移信号可直接指导下一季的备货供给。"], "headers": ["9月TOP5\n（秋冬换季）", "冬季TOP5", "冬季本季趋势上升TOP5", "冬季换季前移TOP5", "夏季TOP5", "夏季本季趋势上升TOP5", "夏季换季前移TOP5"], "rows": [{"cat": "套装", "cells": [["复合/多色", "黑色", "白色", "藏青/深蓝", "蓝色"], ["复合/多色", "黑色", "白色", "藏青/深蓝", "红色"], ["复合/多色", "白色", "卡其", "花色/混色", "米白"], ["白色", "蓝色", "卡其", "天蓝", "绿色"], ["复合/多色", "白色", "黑色", "蓝色", "藏青/深蓝"], ["复合/多色", "黑色", "咖啡", "蓝色", "灰色"], ["黑色", "藏青/深蓝", "灰色", "咖啡", "浅灰"]]}, {"cat": "T恤/POLO", "cells": [["复合/多色", "黑色", "白色", "红色", "藏青/深蓝"], ["黑色", "复合/多色", "白色", "红色", "藏青/深蓝"], ["复合/多色", "白色", "藏青/深蓝", "天蓝", "荧光黄"], ["白色", "蓝色", "黄色", "宝蓝", "藏青/深蓝"], ["复合/多色", "黑色", "白色", "红色", "藏青/深蓝"], ["复合/多色", "卡其", "灰色", "绿色", "花色/混色"], ["复合/多色", "卡其", "红橙", "灰色", "白色"]]}, {"cat": "牛仔裤", "cells": [["黑色", "蓝色", "浅蓝", "复合/多色", "海蓝"], ["蓝色", "黑色", "浅蓝", "海蓝", "藏青/深蓝"], ["黑色", "藏青/深蓝", "海蓝", "鲜蓝", "孔雀蓝"], ["蓝色", "浅蓝", "孔雀蓝", "深灰", "宝蓝"], ["蓝色", "黑色", "浅蓝", "藏青/深蓝", "复合/多色"], ["海蓝", "黑色", "蓝色", "复合/多色", "粉蓝"], ["黑色", "蓝色", "海蓝", "橄榄绿", "草绿"]]}, {"cat": "功能服", "cells": [["黑色", "红色", "复合/多色", "白色", "蓝色"], ["黑色", "红色", "复合/多色", "绿色", "白色"], ["黑色", "白色", "黄色", "藏青/深蓝", "巧克力"], ["黑色", "复合/多色", "黄色", "白色", "橙色"], ["黑色", "红色", "白色", "复合/多色", "藏青/深蓝"], ["红色", "黑色", "藏青/深蓝", "粉红", "花色/混色"], ["黑色", "红色", "鲜蓝", "柠檬黄", "军绿"]]}, {"cat": "棉服/羽绒服", "cells": [["黑色", "藏青/深蓝", "蓝色", "军绿", "卡其"], ["黑色", "藏青/深蓝", "蓝色", "红色", "卡其"], ["米白", "灰色", "藏青/深蓝", "卡其", "奶白"], ["复合/多色", "浅紫", "银灰", "灰色", "藏青/深蓝"], ["黑色", "藏青/深蓝", "蓝色", "军绿", "卡其"], ["黑色", "绿色", "红色", "宝蓝", "祖母绿"], ["黑色", "蓝色", "粉红", "卡其", "黄色"]]}, {"cat": "卫衣/连帽衫", "cells": [["复合/多色", "黑色", "红色", "浅灰", "灰色"], ["复合/多色", "黑色", "红色", "藏青/深蓝", "灰色"], ["藏青/深蓝", "宝蓝", "灰白", "白色", "米白"], ["宝蓝", "白色", "灰色", "杏色", "藏青/深蓝"], ["复合/多色", "黑色", "红色", "灰色", "藏青/深蓝"], ["灰白", "复合/多色", "黑色", "海绿", "深绿"], ["黑色", "浅灰", "藏青/深蓝", "灰色", "红色"]]}, {"cat": "外套夹克", "cells": [["黑色", "复合/多色", "藏青/深蓝", "灰色", "蓝色"], ["黑色", "复合/多色", "蓝色", "藏青/深蓝", "灰色"], ["浅蓝", "咖啡", "卡其", "深绿", "杏色"], ["宝蓝", "浅蓝", "藏青/深蓝", "海蓝", "蓝色"], ["黑色", "复合/多色", "藏青/深蓝", "蓝色", "灰色"], ["黑色", "海绿", "藏青/深蓝", "猩红", "深绿"], ["黑色", "藏青/深蓝", "灰色", "复合/多色", "咖啡"]]}, {"cat": "长裤", "cells": [["复合/多色", "黑色", "灰色", "藏青/深蓝", "卡其"], ["复合/多色", "黑色", "灰色", "卡其", "藏青/深蓝"], ["黑色", "灰色", "浅灰", "深灰", "白色"], ["藏青/深蓝", "白色", "灰色", "绿色", "杏色"], ["复合/多色", "黑色", "灰色", "卡其", "藏青/深蓝"], ["复合/多色", "黑色", "藏青/深蓝", "咖啡", "宝蓝"], ["复合/多色", "黑色", "藏青/深蓝", "灰色", "咖啡"]]}, {"cat": "衬衫/马甲", "cells": [["白色", "复合/多色", "黑色", "蓝色", "红色"], ["白色", "黑色", "红色", "复合/多色", "绿色"], ["黑色", "深红", "花色/混色", "蓝色", "驼色"], ["白色", "花色/混色", "粉红", "砖红", "卡其"], ["白色", "复合/多色", "黑色", "蓝色", "藏青/深蓝"], ["白色", "复合/多色", "藏青/深蓝", "奶白", "米白"], ["黑色", "藏青/深蓝", "杏色", "绿色", "深灰"]]}, {"cat": "背心上衣", "cells": [["复合/多色", "白色", "黑色", "灰色", "藏青/深蓝"], ["复合/多色", "白色", "黑色", "银灰", "藏青/深蓝"], ["蓝色", "花色/混色", "咖啡", "白色", "宝蓝"], ["银灰", "深灰", "卡其", "蓝色", "橙红"], ["复合/多色", "白色", "黑色", "灰色", "深绿"], ["白色", "深绿", "深灰", "花色/混色", "红橙"], ["白色", "复合/多色", "藏青/深蓝", "银灰", "卡其"]]}, {"cat": "连体/背带", "cells": [["复合/多色", "白色", "黑色", "蓝色", "红色"], ["复合/多色", "白色", "黑色", "红色", "蓝色"], ["白色", "复合/多色", "亮钢蓝", "灰色", "奶白"], ["白色", "复合/多色", "天蓝", "黄色", "麦色"], ["复合/多色", "白色", "蓝色", "黑色", "天蓝"], ["黑色", "黄色", "浅蓝", "粉红", "奶白"], ["黑色", "红色", "深棕", "咖啡", "奶白"]]}, {"cat": "短裤", "cells": [["复合/多色", "黑色", "卡其", "灰色", "白色"], ["复合/多色", "黑色", "白色", "灰色", "卡其"], ["复合/多色", "灰色", "浅灰", "抹茶绿", "蓝色"], ["复合/多色", "藏青/深蓝", "宝蓝", "红橙", "祖母绿"], ["复合/多色", "黑色", "灰色", "白色", "藏青/深蓝"], ["复合/多色", "卡其", "湖蓝", "宝蓝", "藏青/深蓝"], ["黑色", "卡其", "藏青/深蓝", "天蓝", "深灰"]]}, {"cat": "毛衣/开衫/针织", "cells": [["复合/多色", "藏青/深蓝", "灰色", "米白", "黑色"], ["复合/多色", "藏青/深蓝", "红色", "米白", "白色"], ["灰色", "米白", "蓝色", "酒红", "浅蓝"], ["复合/多色", "浅蓝", "黑色", "黄色", "白色"], ["复合/多色", "藏青/深蓝", "白色", "米白", "黑色"], ["藏青/深蓝", "白色", "绿色", "亮钢蓝", "红橙"], ["复合/多色", "黑色", "酒红", "咖啡", "浅灰"]]}, {"cat": "正装", "cells": [["黑色", "藏青/深蓝", "卡其", "蓝色", "灰色"], ["黑色", "藏青/深蓝", "红色", "灰色", "卡其"], ["黑色", "卡其", "蓝色", "藏青/深蓝", "铁锈"], ["藏青/深蓝", "黑色", "蓝色", "浅绿", "卡其"], ["黑色", "藏青/深蓝", "卡其", "蓝色", "白色"], ["灰色", "蓝色", "藏青/深蓝", "铁锈", "杏色"], ["黑色", "藏青/深蓝", "浅蓝", "酒红", "宝蓝"]]}, {"cat": "泳衣泳裤", "cells": [["复合/多色", "蓝色", "藏青/深蓝", "天蓝", "黑色"], ["复合/多色", "蓝色", "黑色", "藏青/深蓝", "红色"], ["蓝色", "花色/混色", "杏色", "藏青/深蓝", "红色"], ["复合/多色", "藏青/深蓝", "祖母绿", "绿色", "湖蓝"], ["复合/多色", "蓝色", "黑色", "天蓝", "藏青/深蓝"], ["蓝色", "天蓝", "黑色", "灰色", "橙色"], ["红色", "藏青/深蓝", "橙色", "黄绿", "杏色"]]}, {"cat": "打底/压缩", "cells": [["黑色", "复合/多色", "灰色", "白色", "米白"], ["黑色", "复合/多色", "白色", "藏青/深蓝", "灰色"], ["藏青/深蓝", "复合/多色", "浅灰", "蓝色", "玫红"], ["黑色", "蓝色", "藏青/深蓝", "花色/混色", "深灰"], ["黑色", "复合/多色", "浅灰", "藏青/深蓝", "白色"], ["米白", "黑色", "复合/多色", "白色", "杏色"], ["复合/多色", "白色", "藏青/深蓝", "杏色", "灰色"]]}, {"cat": "传统服饰", "cells": [["白色", "黑色", "藏青/深蓝", "红色", "酒红"], ["白色", "黑色", "红色", "藏青/深蓝", "蓝色"], ["红色", "黑色", "花色/混色", "绿色", "深红"], ["红色", "复合/多色", "黑色", "灰白", "亚麻"], ["白色", "黑色", "藏青/深蓝", "酒红", "复合/多色"], ["宝蓝", "白色", "深棕", "酒红", "复合/多色"], ["藏青/深蓝", "蓝色", "绿色", "复合/多色", "花色/混色"]]}, {"cat": "防晒衫", "cells": [["复合/多色", "黑色", "蓝色", "藏青/深蓝", "白色"], ["复合/多色", "藏青/深蓝", "黑色", "蓝色", "红色"], ["黑色", "复合/多色", "橙色", "孔雀蓝", "天蓝"], ["红色", "橙红", "浅蓝", "浅灰", "白色"], ["复合/多色", "蓝色", "藏青/深蓝", "黑色", "天蓝"], ["复合/多色", "黑色", "浅蓝", "银灰", "姜黄"], ["复合/多色", "红色", "黄色", "黑色", "军绿"]]}]}, "section3d": [{"cat": "套装", "rows": [["Multicolor / 复合/多色", 81, "P0", "p0", [19.06, 1, 1]], ["Blue / 蓝色", 25, "P0", "p0", [1.43, 5, 5]], ["Green / 绿色", 16, "P1", "p1", 1.49], ["Apricot / 杏色", 12, "P1", "p1", 1.06], ["Beige / 米色", 9, "P1", "p1", 0.96], ["Army Green / 军绿色", 8, "P1", "p1", 0.85], ["Coffee Brown / 咖啡棕色", 5, "P1", "p1", 1.03], ["Black and White / 黑白配色", 8, "P2", "p2m", null], ["Dusty Blue / 灰蓝色", 7, "P2", "p2s", null], ["Pink / 粉色", 4, "P2", "p2s", null], ["Blue and White / 蓝白", 4, "P2", "p2m", null], ["Light Wash / 浅水洗", 3, "P2", "p2s", null], ["Black / 黑色", 47, "P3", "p3o", -7.79], ["Grey / 灰色", 33, "P3", "p3m", 0.24], ["Khaki / 卡其色", 26, "P3", "p3m", 0.83], ["Red / 红色", 23, "P3", "p3o", -5.06], ["Brown / 棕色", 20, "P3", "p3m", 0.07], ["White / 白色", 18, "P3", "p3o", -6.07], ["Royal Blue / 宝蓝色", 15, "P3", "p3o", -2.33], ["Navy Blue / 藏蓝色", 12, "P3", "p3o", -4.09], ["Yellow / 黄色", 10, "P3", "p3m", -0.57], ["Burgundy / 酒红色", 8, "P3", "p3m", 0.1], ["Baby Blue / 婴儿蓝 / 浅蓝色", 7, "P3", "p3m", -0.27], ["Dark Green / 深绿色", 7, "P3", "p3m", 0.59], ["Dark Grey / 深灰色", 6, "P3", "p3m", -0.01], ["Light Grey / 浅灰色", 2, "P3", "p3o", -1.08], ["Burnt Orange / 焦橙色", 2, "P3", "p3m", -0.32], ["Dark Wash / 深水洗", 2, "P3", "p3f", "蓝色系"], ["Mocha Brown / 摩卡棕色", 2, "P3", "p3f", "棕色系"], ["Baby Pink / 浅粉", 1, "P3", "p3f", "粉色系"], ["Hot Pink / 亮粉", 1, "P3", "p3m", -0.34], ["Orange / 橙色", 1, "P3", "p3m", -0.32], ["Olive Green / 橄榄绿", 1, "P3", "p3m", 0.32], ["Mauve Purple / 灰紫色", 1, "P3", "p3o", -1.3], ["Red and White / 红白配色", 1, "P3", "p3f", "复合配色"]]}, {"cat": "长裤", "rows": [["Black / 黑色", 36, "P0", "p0", [9.87, 2, 2]], ["Khaki / 卡其色", 20, "P0", "p0", [2.86, 5, 3]], ["White / 白色", 11, "P1", "p1", 1.42], ["Light Grey / 浅灰色", 8, "P1", "p1", 1.0], ["Dark Grey / 深灰色", 8, "P1", "p1", 1.05], ["Army Green / 军绿色", 8, "P1", "p1", 0.8], ["Beige / 米色", 3, "P1", "p1", 0.45], ["Black and White / 黑白配色", 6, "P2", "p2m", null], ["Dusty Blue / 灰蓝色", 3, "P2", "p2s", null], ["Multicolor / 复合/多色", 36, "P3", "p3o", -7.52], ["Grey / 灰色", 18, "P3", "p3m", -0.66], ["Brown / 棕色", 16, "P3", "p3m", 0.03], ["Navy Blue / 藏蓝色", 13, "P3", "p3m", -0.75], ["Blue / 蓝色", 12, "P3", "p3m", 0.09], ["Apricot / 杏色", 6, "P3", "p3o", -2.27], ["Baby Blue / 婴儿蓝 / 浅蓝色", 5, "P3", "p3m", 0.22], ["Green / 绿色", 3, "P3", "p3m", 0.12], ["Coffee Brown / 咖啡棕色", 2, "P3", "p3o", -1.29], ["Dark Green / 深绿色", 2, "P3", "p3m", 0.27], ["Rust Brown / 铁锈棕色", 1, "P3", "p3m", 0.06], ["Red / 红色", 1, "P3", "p3o", -4.77], ["Olive Green / 橄榄绿", 1, "P3", "p3m", 0.04], ["Burgundy / 酒红色", 1, "P3", "p3m", -0.06], ["Camel / 驼色", 1, "P3", "p3m", 0.0], ["Mocha Brown / 摩卡棕色", 1, "P3", "p3f", "棕色系"], ["Mint Green / 薄荷绿", 1, "P3", "p3f", "绿色系"], ["Baby Pink / 婴儿粉 / 浅粉色", 1, "P3", "p3n", null]]}, {"cat": "毛衣针织开衫", "rows": [["Multicolor / 复合/多色", 73, "P0", "p0", [9.78, 1, 1]], ["Navy Blue / 藏蓝色", 41, "P0", "p0", [8.41, 2, 4]], ["Khaki / 卡其色", 31, "P1", "p1", 3.84], ["Green / 绿色", 19, "P1", "p1", 1.37], ["Beige / 米色", 13, "P1", "p1", 1.66], ["Coffee Brown / 咖啡棕色", 10, "P1", "p1", 2.6], ["Baby Blue / 婴儿蓝 / 浅蓝色", 6, "P1", "p1", 1.49], ["Black and White / 黑白配色", 18, "P2", "p2m", null], ["Dusty Blue / 灰蓝色", 15, "P2", "p2s", null], ["Blue and White / 蓝白", 6, "P2", "p2s", null], ["Mint Green / 薄荷绿", 4, "P2", "p2s", null], ["Baby Pink / 婴粉", 2, "P2", "p2s", null], ["Apricot / 杏色", 58, "P3", "p3o", -3.41], ["Brown / 棕色", 44, "P3", "p3m", 0.11], ["Red / 红色", 30, "P3", "p3o", -6.56], ["Blue / 蓝色", 28, "P3", "p3m", -0.98], ["White / 白色", 28, "P3", "p3o", -1.36], ["Black / 黑色", 26, "P3", "p3o", -8.9], ["Grey / 灰色", 25, "P3", "p3o", -2.63], ["Dark Green / 深绿色", 24, "P3", "p3o", -3.7], ["Burgundy / 酒红色", 18, "P3", "p3m", 1.05], ["Army Green / 军绿色", 9, "P3", "p3m", 0.09], ["Yellow / 黄色", 8, "P3", "p3m", 0.3], ["Light Grey / 浅灰色", 6, "P3", "p3o", -2.62], ["Olive Green / 橄榄绿", 4, "P3", "p3m", -0.03], ["Royal Blue / 宝蓝色", 2, "P3", "p3m", 1.14], ["Dark Grey / 深灰色", 2, "P3", "p3m", 0.14], ["Orange / 橙色", 2, "P3", "p3m", 0.01], ["Camel / 驼色", 1, "P3", "p3m", 0.35], ["Pink / 粉色", 1, "P3", "p3n", null]]}, {"cat": "外套夹克", "rows": [["Black / 黑色", 60, "P0", "p0", [18.28, 1, 2]], ["Navy Blue / 藏蓝色", 30, "P0", "p0", [6.24, 3, 4]], ["Khaki / 卡其色", 27, "P1", "p1", 1.52], ["White / 白色", 12, "P1", "p1", 0.85], ["Army Green / 军绿色", 11, "P1", "p1", 0.85], ["Royal Blue / 宝蓝色", 6, "P1", "p1", 1.02], ["Light Grey / 浅灰色", 2, "P1", "p1", 0.66], ["Dusty Blue / 灰蓝色", 7, "P2", "p2s", null], ["Black and White / 黑白配色", 5, "P2", "p2m", null], ["Medium Wash / 中水洗蓝", 4, "P2", "p2s", null], ["Light Wash / 浅水洗蓝", 2, "P2", "p2s", null], ["Pink / 粉色", 1, "P2", "p2s", null], ["Multicolor / 复合/多色", 64, "P3", "p3o", -13.94], ["Brown / 棕色", 38, "P3", "p3m", 0.06], ["Apricot / 杏色", 24, "P3", "p3m", -0.15], ["Grey / 灰色", 22, "P3", "p3m", -0.34], ["Blue / 蓝色", 17, "P3", "p3o", -1.85], ["Green / 绿色", 14, "P3", "p3m", 0.21], ["Beige / 米色", 7, "P3", "p3m", 0.36], ["Burgundy / 酒红色", 7, "P3", "p3m", 0.23], ["Coffee Brown / 咖啡棕色", 6, "P3", "p3m", 0.1], ["Red / 红色", 4, "P3", "p3o", -9.96], ["Dark Green / 深绿色", 4, "P3", "p3o", -2.3], ["Camel / 驼色", 4, "P3", "p3m", 0.38], ["Dark Grey / 深灰色", 2, "P3", "p3m", 0.34], ["Burnt Orange / 焦橙色", 1, "P3", "p3m", 0.33], ["Olive Green / 橄榄绿", 1, "P3", "p3m", 0.13], ["Blue and White / 蓝白配色", 1, "P3", "p3f", "复合配色"], ["Chocolate Brown / 巧克力棕色", 1, "P3", "p3f", "棕色系"], ["Mocha Brown / 摩卡棕色", 1, "P3", "p3f", "棕色系"], ["Red and White / 红白配色", 1, "P3", "p3f", "复合配色"]]}, {"cat": "卫衣连帽衫", "rows": [["Black / 黑色", 58, "P0", "p0", [1.52, 2, 1]], ["Multicolor / 复合/多色", 30, "P0", "p0", [21.88, 1, 4]], ["White / 白色", 34, "P1", "p1", 1.49], ["Green / 绿色", 9, "P1", "p1", 0.79], ["Khaki / 卡其色", 5, "P1", "p1", 1.28], ["Dark Green / 深绿色", 2, "P1", "p1", 0.71], ["Burgundy / 酒红色", 1, "P1", "p1", 0.74], ["Dark Grey / 深灰色", 23, "P2", "p2x", 0.43], ["Dusty Blue / 灰蓝色", 7, "P2", "p2s", null], ["Pink / 粉色", 5, "P2", "p2s", null], ["Black and White / 黑白配色", 2, "P2", "p2m", null], ["Mint Green / 薄荷绿", 1, "P2", "p2s", null], ["Grey / 灰色", 40, "P3", "p3o", -2.74], ["Apricot / 杏色", 23, "P3", "p3o", -4.01], ["Red / 红色", 18, "P3", "p3o", -10.86], ["Navy Blue / 藏蓝色", 18, "P3", "p3m", 0.11], ["Blue / 蓝色", 17, "P3", "p3o", -1.22], ["Light Grey / 浅灰色", 9, "P3", "p3o", -3.73], ["Baby Blue / 婴儿蓝/浅蓝色", 7, "P3", "p3m", -0.09], ["Purple / 紫色", 7, "P3", "p3m", 0.04], ["Orange / 橙色", 6, "P3", "p3m", 0.09], ["Brown / 棕色", 5, "P3", "p3m", -0.01], ["Royal Blue / 宝蓝色", 5, "P3", "p3o", -1.8], ["Yellow / 黄色", 3, "P3", "p3m", -0.9], ["Army Green / 军绿色", 3, "P3", "p3m", 0.4], ["Light Gray 2 / 浅灰色", 2, "P3", "p3o", -3.73], ["Coffee Brown / 咖啡棕色", 2, "P3", "p3m", 0.65], ["Burnt Orange / 焦橙色", 2, "P3", "p3m", 0.09], ["Dark Gray / 深灰色", 2, "P3", "p3m", 0.43], ["Mauve Purple / 灰紫色", 2, "P3", "p3m", 0.11], ["Black 3 / 黑色", 1, "P3", "p3m", 1.52], ["Black 4 / 黑色", 1, "P3", "p3m", 1.52], ["Red 2 / 红色", 1, "P3", "p3o", -10.86], ["Red 3 / 红色", 1, "P3", "p3o", -10.86], ["Red 4 / 红色", 1, "P3", "p3o", -10.86], ["Light Gray 4 / 浅灰色", 1, "P3", "p3o", -3.73], ["Navy Blue 2 / 藏蓝色", 1, "P3", "p3m", 0.11], ["Navy Blue 3 / 藏蓝色", 1, "P3", "p3m", 0.11], ["Navy Blue 4 / 藏蓝色", 1, "P3", "p3m", 0.11], ["White 4 / 白色", 1, "P3", "p3m", 1.49], ["Beige / 米色", 1, "P3", "p3m", 0.38], ["Dark Gray 4 / 深灰色", 1, "P3", "p3m", 0.43]]}, {"cat": "棉服羽绒服", "rows": [["Black / 黑色", 79, "P0", "p0", [14.98, 1, 1]], ["Navy Blue / 藏蓝色", 26, "P0", "p0", [0.57, 2, 5]], ["Blue / 蓝色", 25, "P1", "p1", 0.89], ["Beige / 米色", 21, "P1", "p1", 0.03], ["Grey / 灰色", 19, "P1", "p1s", -0.15], ["Camel / 驼色", 15, "P1", "p1", 0.46], ["Coffee Brown / 咖啡棕色", 4, "P1", "p1s", -0.06], ["Black and White / 黑白配色", 8, "P2", "p2m", null], ["Dusty Blue / 灰蓝色", 2, "P2", "p2s", null], ["Blue and White / 蓝白配色", 1, "P2", "p2m", null], ["Ice Cobalt / 冰钴蓝", 1, "P2", "p2s", null], ["Sedona Sage / 鼠尾草绿", 1, "P2", "p2s", null], ["Multicolor / 复合/多色", 48, "P3", "p3m", 0.19], ["Khaki / 卡其色", 43, "P3", "p3m", -0.71], ["Brown / 棕色", 27, "P3", "p3m", -0.17], ["Burgundy / 酒红色", 21, "P3", "p3m", -0.21], ["Apricot / 杏色", 20, "P3", "p3m", -0.19], ["Dark Grey / 深灰色", 8, "P3", "p3m", -0.22], ["Green / 绿色", 7, "P3", "p3o", -1.29], ["Army Green / 军绿色", 6, "P3", "p3m", -0.27], ["White / 白色", 6, "P3", "p3o", -1.5], ["Dark Green / 深绿色", 6, "P3", "p3m", -0.2], ["Light Grey / 浅灰色", 6, "P3", "p3m", -0.42], ["Royal Blue / 宝蓝色", 4, "P3", "p3m", -0.22], ["Orange / 橙色", 4, "P3", "p3m", -0.4], ["Chocolate Brown / 巧克力棕", 3, "P3", "p3m", -0.57], ["Red / 红色", 2, "P3", "p3o", -3.11], ["Baby Blue / 婴儿蓝 / 浅蓝色", 2, "P3", "p3m", -0.5], ["Yellow / 黄色", 1, "P3", "p3o", -1.2], ["Milky White / 奶白色", 1, "P3", "p3m", -0.2], ["Light Gray / 浅灰色", 1, "P3", "p3m", -0.42], ["Olive / 橄榄绿", 1, "P3", "p3m", -0.18], ["Olive Green / 橄榄绿", 1, "P3", "p3m", -0.18], ["Thunder Blue / 雷暴蓝", 1, "P3", "p3f", "蓝色系"]]}, {"cat": "T恤polo", "rows": [["Multicolor / 复合/多色", 60, "P0", "p0", [28.06, 1, 1]], ["Black / 黑色", 59, "P0", "p0", [0.03, 2, 3]], ["Grey / 灰色", 29, "P1", "p1", 0.53], ["Baby Blue / 婴儿蓝/浅蓝色", 17, "P1", "p1", 0.24], ["Dark Green / 深绿色", 16, "P1", "p1", 0.56], ["Green / 绿色", 7, "P1", "p1", 0.49], ["Coffee Brown / 咖啡棕色", 6, "P1", "p1", 0.41], ["Black and White / 黑白配色", 24, "P2", "p2m", null], ["Blue and White / 蓝白拼色", 6, "P2", "p2m", null], ["Dusty Blue / 灰蓝色", 3, "P2", "p2s", null], ["Dusty Pink / 豆沙粉", 2, "P2", "p2s", null], ["Mint Green / 薄荷绿", 2, "P2", "p2s", null], ["White / 白色", 59, "P3", "p3o", -1.52], ["Navy Blue / 藏蓝色", 28, "P3", "p3o", -4.33], ["Blue / 蓝色", 23, "P3", "p3o", -1.39], ["Red / 红色", 19, "P3", "p3o", -5.75], ["Apricot / 杏色", 18, "P3", "p3m", -0.78], ["Khaki / 卡其色", 13, "P3", "p3m", -0.66], ["Burgundy / 酒红色", 13, "P3", "p3m", 0.07], ["Royal Blue / 宝蓝色", 12, "P3", "p3m", -0.66], ["Dark Grey / 深灰色", 12, "P3", "p3m", -0.66], ["Army Green / 军绿色", 12, "P3", "p3m", -0.04], ["Brown / 棕色", 10, "P3", "p3m", 0.1], ["Yellow / 黄色", 10, "P3", "p3o", -2.9], ["Beige / 米色", 7, "P3", "p3m", 0.09], ["Mauve Purple / 灰紫色", 3, "P3", "p3m", -0.88], ["Orange / 橙色", 2, "P3", "p3o", -2.65], ["Black 1 / 黑色", 1, "P3", "p3m", 0.03], ["Black 2 / 黑色", 1, "P3", "p3m", 0.03], ["Black 3 / 黑色", 1, "P3", "p3m", 0.03], ["Black 5 / 黑色", 1, "P3", "p3m", 0.03], ["Black 6 / 黑色", 1, "P3", "p3m", 0.03], ["White 2 / 白色", 1, "P3", "p3o", -1.52], ["CLASSICRED / 经典红", 1, "P3", "p3o", -5.75], ["NAUTICO / 海军蓝", 1, "P3", "p3o", -4.33], ["Dark Gray 4 / 深灰色", 1, "P3", "p3m", -0.06], ["Purple / 紫色", 1, "P3", "p3m", -0.44], ["Light Grey / 浅灰色", 1, "P3", "p3m", 0.02], ["Olive Green / 橄榄绿", 1, "P3", "p3m", 0.03], ["Mocha Brown / 摩卡棕色", 1, "P3", "p3f", "棕色系"], ["Pink / 粉色", 1, "P3", "p3n", null], ["Redwood / 红杉色 / 红棕色", 1, "P3", "p3m", 0.0]]}, {"cat": "连体背带", "rows": [["Multicolor / 复合/多色", 62, "P0", "p0", [20.8, 1, 1]], ["Blue / 蓝色", 58, "P0", "p0", [4.55, 4, 2]], ["Khaki / 卡其色", 34, "P1", "p1", 0.91], ["Navy Blue / 藏蓝色", 31, "P1", "p1", 2.63], ["Yellow / 黄色", 12, "P1", "p1", 0.84], ["Beige / 米色", 6, "P1", "p1", 1.53], ["Royal Blue / 宝蓝色", 4, "P1", "p1", 0.98], ["Medium Wash / 中蓝洗水", 23, "P2", "p2s", null], ["Light Wash / 浅蓝洗水", 21, "P2", "p2s", null], ["Black and White / 黑白配色", 15, "P2", "p2m", null], ["Dusty Blue / 灰蓝色", 10, "P2", "p2s", null], ["Dark Wash / 深蓝洗水", 5, "P2", "p2s", null], ["Brown / 棕色", 48, "P3", "p3m", 0.2], ["Black / 黑色", 29, "P3", "p3o", -8.11], ["Green / 绿色", 24, "P3", "p3o", -1.19], ["Dark Green / 深绿色", 20, "P3", "p3o", -6.39], ["Apricot / 杏色", 18, "P3", "p3o", -2.16], ["Red / 红色", 13, "P3", "p3m", -0.98], ["Grey / 灰色", 11, "P3", "p3o", -7.21], ["Baby Blue / 婴儿蓝/浅蓝色", 10, "P3", "p3m", 0.35], ["White / 白色", 9, "P3", "p3o", -10.4], ["Burgundy / 酒红色", 7, "P3", "p3o", -3.1], ["Army Green / 军绿色", 7, "P3", "p3m", 0.81], ["Light Grey / 浅灰色", 6, "P3", "p3m", 0.14], ["Camel / 驼色", 6, "P3", "p3m", 0.33], ["Coffee Brown / 咖啡棕色", 5, "P3", "p3m", 0.8], ["Orange / 橙色", 2, "P3", "p3m", 0.45], ["Purple / 紫色", 2, "P3", "p3m", -0.67], ["Blue and White / 蓝白配色", 2, "P3", "p3f", "复合配色"], ["Blue-birthday Boy / 蓝色（男孩生日图案）", 2, "P3", "p3f", "复合配色"], ["Khaki Sunflower / 卡其色（向日葵图案）", 2, "P3", "p3f", "复合配色"], ["Pink / 粉色", 2, "P3", "p3n", null], ["Pink Chick / 粉色（小鸡图案）", 2, "P3", "p3f", "复合配色"], ["Pink Cow / 粉色（奶牛图案）", 2, "P3", "p3f", "复合配色"], ["Pink Heart / 粉色（爱心图案）", 2, "P3", "p3f", "复合配色"], ["Pink-birthday Girl / 粉色（女孩生日图案）", 2, "P3", "p3f", "复合配色"], ["Mint Green / 薄荷绿", 1, "P3", "p3f", "绿色系"]]}]};
+var S31=[{"cat":"套装","total":123,"ncolor":34,"denim":0,"colors":[{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":81,"in":true,"share":18.9,"rk":true,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":47,"in":true,"share":11.0,"rk":false,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":33,"in":true,"share":7.7,"rk":false,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":26,"in":true,"share":6.1,"rk":false,"try":false},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":25,"in":true,"share":5.8,"rk":true,"try":false},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":23,"in":true,"share":5.4,"rk":false,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":20,"in":true,"share":4.7,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":18,"in":true,"share":4.2,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":16,"in":true,"share":3.7,"rk":true,"try":false},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":15,"in":true,"share":3.5,"rk":false,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":12,"in":true,"share":2.8,"rk":true,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":12,"in":true,"share":2.8,"rk":false,"try":false},{"cn":"黄色","en":"Yellow","hex":"#E3C24C","fam":"黄色系","n":10,"in":true,"share":2.3,"rk":false,"try":false},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":9,"in":true,"share":2.1,"rk":true,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":8,"in":true,"share":1.9,"rk":true,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":8,"in":true,"share":1.9,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":8,"in":false,"share":1.9,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":7,"in":true,"share":1.6,"rk":true,"try":false},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":7,"in":true,"share":1.6,"rk":false,"try":false},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":7,"in":true,"share":1.6,"rk":false,"try":false},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":7,"in":false,"share":1.6,"rk":false,"try":true},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":6,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"粉色","en":"Pink","hex":"#B3696E","fam":"粉色系","n":4,"in":false,"share":0.9,"rk":false,"try":true},{"cn":"蓝白","en":"Blue and White","hex":"","fam":"复合配色","n":4,"in":false,"share":0.9,"rk":false,"try":true,"bg":"linear-gradient(135deg,#4a7fb5 0% 50%,#ffffff 50% 100%)"},{"cn":"浅水洗","en":"Light Wash","hex":"#7BA7C4","fam":"蓝色系","n":3,"in":false,"share":0.7,"rk":false,"try":true},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"深水洗","en":"Dark Wash","hex":"#2E5F9E","fam":"蓝色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"焦橙色","en":"Burnt Orange","hex":"#BC612F","fam":"橙色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"亮粉","en":"Hot Pink","hex":"#E85A7A","fam":"粉色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"橄榄绿","en":"Olive Green","hex":"#78824F","fam":"绿色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"橙色","en":"Orange","hex":"#C95423","fam":"橙色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"浅粉","en":"Baby Pink","hex":"#F4C2C2","fam":"粉色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"灰紫色","en":"Mauve Purple","hex":"#A27E99","fam":"紫色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"红白配色","en":"Red and White","hex":"","fam":"复合配色","n":1,"in":true,"share":0.2,"rk":false,"try":false,"bg":"linear-gradient(135deg,#c62f2f 0% 50%,#ffffff 50% 100%)"}]},{"cat":"长裤","total":92,"ncolor":26,"denim":3,"colors":[{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":56,"in":true,"share":16.5,"rk":false,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":56,"in":true,"share":16.5,"rk":true,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":28,"in":true,"share":8.2,"rk":false,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":27,"in":true,"share":7.9,"rk":true,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":24,"in":true,"share":7.1,"rk":false,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":22,"in":true,"share":6.5,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":17,"in":true,"share":5.0,"rk":true,"try":false},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":17,"in":true,"share":5.0,"rk":false,"try":false},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":16,"in":true,"share":4.7,"rk":true,"try":false},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":12,"in":true,"share":3.5,"rk":true,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":10,"in":true,"share":2.9,"rk":true,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":10,"in":true,"share":2.9,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":10,"in":false,"share":2.9,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":6,"in":false,"share":1.8,"rk":false,"try":true},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":5,"in":true,"share":1.5,"rk":false,"try":false},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":4,"in":true,"share":1.2,"rk":false,"try":false},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":4,"in":true,"share":1.2,"rk":true,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":4,"in":true,"share":1.2,"rk":false,"try":false},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":3,"in":true,"share":0.9,"rk":false,"try":false},{"cn":"橄榄绿","en":"Olive Green","hex":"#78824F","fam":"绿色系","n":2,"in":true,"share":0.6,"rk":false,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":2,"in":true,"share":0.6,"rk":false,"try":false},{"cn":"婴儿粉","en":"Baby Pink","hex":"#B3696E","fam":"粉色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"薄荷绿","en":"Mint Green","hex":"#A2D4BC","fam":"绿色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"铁锈棕色","en":"Rust Brown","hex":"#A35436","fam":"棕色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"驼色","en":"Camel","hex":"#B99160","fam":"棕色系","n":1,"in":true,"share":0.3,"rk":false,"try":false}]},{"cat":"毛衣针织开衫","total":108,"ncolor":30,"denim":0,"colors":[{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":73,"in":true,"share":13.2,"rk":true,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":58,"in":true,"share":10.5,"rk":false,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":44,"in":true,"share":7.9,"rk":false,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":41,"in":true,"share":7.4,"rk":true,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":31,"in":true,"share":5.6,"rk":true,"try":false},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":30,"in":true,"share":5.4,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":28,"in":true,"share":5.1,"rk":false,"try":false},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":28,"in":true,"share":5.1,"rk":false,"try":false},{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":26,"in":true,"share":4.7,"rk":false,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":25,"in":true,"share":4.5,"rk":false,"try":false},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":24,"in":true,"share":4.3,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":19,"in":true,"share":3.4,"rk":true,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":18,"in":true,"share":3.2,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":18,"in":false,"share":3.2,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":15,"in":false,"share":2.7,"rk":false,"try":true},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":13,"in":true,"share":2.3,"rk":true,"try":false},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":10,"in":true,"share":1.8,"rk":true,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":9,"in":true,"share":1.6,"rk":false,"try":false},{"cn":"黄色","en":"Yellow","hex":"#E3C24C","fam":"黄色系","n":8,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":6,"in":true,"share":1.1,"rk":true,"try":false},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":6,"in":true,"share":1.1,"rk":false,"try":false},{"cn":"蓝白","en":"Blue and White","hex":"#4A7BA6","fam":"蓝色系","n":6,"in":false,"share":1.1,"rk":false,"try":true},{"cn":"橄榄绿","en":"Olive Green","hex":"#78824F","fam":"绿色系","n":4,"in":true,"share":0.7,"rk":false,"try":false},{"cn":"薄荷绿","en":"Mint Green","hex":"#A2D4BC","fam":"绿色系","n":4,"in":false,"share":0.7,"rk":false,"try":true},{"cn":"婴粉","en":"Baby Pink","hex":"#E7B6C3","fam":"粉色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"橙色","en":"Orange","hex":"#C95423","fam":"橙色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"粉色","en":"Pink","hex":"#B3696E","fam":"粉色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"驼色","en":"Camel","hex":"#B99160","fam":"棕色系","n":1,"in":true,"share":0.2,"rk":false,"try":false}]},{"cat":"外套夹克","total":95,"ncolor":29,"denim":0,"colors":[{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":64,"in":true,"share":16.6,"rk":false,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":60,"in":true,"share":15.5,"rk":true,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":38,"in":true,"share":9.8,"rk":false,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":30,"in":true,"share":7.8,"rk":true,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":27,"in":true,"share":7.0,"rk":true,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":24,"in":true,"share":6.2,"rk":false,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":22,"in":true,"share":5.7,"rk":false,"try":false},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":17,"in":true,"share":4.4,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":14,"in":true,"share":3.6,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":12,"in":true,"share":3.1,"rk":true,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":11,"in":true,"share":2.8,"rk":true,"try":false},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":8,"in":true,"share":2.1,"rk":false,"try":false},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":7,"in":false,"share":1.8,"rk":false,"try":true},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":7,"in":true,"share":1.8,"rk":false,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":7,"in":true,"share":1.8,"rk":false,"try":false},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":6,"in":true,"share":1.6,"rk":true,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":5,"in":false,"share":1.3,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"中水洗蓝","en":"Medium Wash","hex":"#7A96B5","fam":"蓝色系","n":4,"in":false,"share":1.0,"rk":false,"try":true},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":4,"in":true,"share":1.0,"rk":false,"try":false},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":4,"in":true,"share":1.0,"rk":false,"try":false},{"cn":"驼色","en":"Camel","hex":"#B99160","fam":"棕色系","n":4,"in":true,"share":1.0,"rk":false,"try":false},{"cn":"浅水洗蓝","en":"Light Wash","hex":"#A9C0D6","fam":"蓝色系","n":2,"in":false,"share":0.5,"rk":false,"try":true},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":2,"in":true,"share":0.5,"rk":true,"try":false},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"橄榄绿","en":"Olive Green","hex":"#78824F","fam":"绿色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"焦橙色","en":"Burnt Orange","hex":"#BC612F","fam":"橙色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"粉色","en":"Pink","hex":"#B3696E","fam":"粉色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"红白配色","en":"Red and White","hex":"","fam":"复合配色","n":1,"in":true,"share":0.3,"rk":false,"try":false,"bg":"linear-gradient(135deg,#c62f2f 0% 50%,#ffffff 50% 100%)"},{"cn":"蓝白配色","en":"Blue and White","hex":"","fam":"复合配色","n":1,"in":true,"share":0.3,"rk":false,"try":false,"bg":"linear-gradient(135deg,#4a7fb5 0% 50%,#ffffff 50% 100%)"}]},{"cat":"卫衣连帽衫","total":111,"ncolor":29,"denim":0,"colors":[{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":60,"in":true,"share":16.7,"rk":true,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":40,"in":true,"share":11.1,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":35,"in":true,"share":9.7,"rk":true,"try":false},{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":30,"in":true,"share":8.3,"rk":true,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":26,"in":true,"share":7.2,"rk":false,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":23,"in":true,"share":6.4,"rk":false,"try":false},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":21,"in":true,"share":5.8,"rk":false,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":21,"in":true,"share":5.8,"rk":false,"try":false},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":17,"in":true,"share":4.7,"rk":false,"try":false},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":12,"in":true,"share":3.3,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":9,"in":true,"share":2.5,"rk":true,"try":false},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":7,"in":true,"share":1.9,"rk":false,"try":false},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":7,"in":false,"share":1.9,"rk":false,"try":true},{"cn":"紫色","en":"Purple","hex":"#7D5291","fam":"紫色系","n":7,"in":true,"share":1.9,"rk":false,"try":false},{"cn":"橙色","en":"Orange","hex":"#C95423","fam":"橙色系","n":6,"in":true,"share":1.7,"rk":false,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":5,"in":true,"share":1.4,"rk":true,"try":false},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":5,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":5,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"粉色","en":"Pink","hex":"#B3696E","fam":"粉色系","n":5,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":3,"in":true,"share":0.8,"rk":false,"try":false},{"cn":"黄色","en":"Yellow","hex":"#E3C24C","fam":"黄色系","n":3,"in":true,"share":0.8,"rk":false,"try":false},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":2,"in":true,"share":0.6,"rk":false,"try":false},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":2,"in":true,"share":0.6,"rk":true,"try":false},{"cn":"灰紫色","en":"Mauve Purple","hex":"#A27E99","fam":"紫色系","n":2,"in":true,"share":0.6,"rk":false,"try":false},{"cn":"焦橙色","en":"Burnt Orange","hex":"#BC612F","fam":"橙色系","n":2,"in":true,"share":0.6,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":2,"in":false,"share":0.6,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":1,"in":true,"share":0.3,"rk":false,"try":false},{"cn":"薄荷绿","en":"Mint Green","hex":"#A2D4BC","fam":"绿色系","n":1,"in":false,"share":0.3,"rk":false,"try":true},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":1,"in":true,"share":0.3,"rk":true,"try":false}]},{"cat":"棉服羽绒服","total":95,"ncolor":31,"denim":0,"colors":[{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":79,"in":true,"share":18.8,"rk":true,"try":false},{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":48,"in":true,"share":11.4,"rk":false,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":43,"in":true,"share":10.2,"rk":false,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":27,"in":true,"share":6.4,"rk":false,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":26,"in":true,"share":6.2,"rk":true,"try":false},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":25,"in":true,"share":5.9,"rk":true,"try":false},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":21,"in":true,"share":5.0,"rk":true,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":21,"in":true,"share":5.0,"rk":false,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":20,"in":true,"share":4.8,"rk":false,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":19,"in":true,"share":4.5,"rk":true,"try":false},{"cn":"驼色","en":"Camel","hex":"#B99160","fam":"棕色系","n":15,"in":true,"share":3.6,"rk":true,"try":false},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":8,"in":true,"share":1.9,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":8,"in":false,"share":1.9,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":7,"in":true,"share":1.7,"rk":true,"try":false},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":7,"in":true,"share":1.7,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":7,"in":true,"share":1.7,"rk":false,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":6,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":6,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":6,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":4,"in":true,"share":1.0,"rk":false,"try":false},{"cn":"橙色","en":"Orange","hex":"#C95423","fam":"橙色系","n":4,"in":true,"share":1.0,"rk":false,"try":false},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"橄榄绿","en":"OLIVE","hex":"#78824F","fam":"绿色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":2,"in":false,"share":0.5,"rk":false,"try":true},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":2,"in":true,"share":0.5,"rk":false,"try":false},{"cn":"冰钴蓝","en":"ICE COBALT CL","hex":"#3F63C8","fam":"蓝色系","n":1,"in":false,"share":0.2,"rk":false,"try":true},{"cn":"奶白色","en":"Milky White","hex":"#F6F3EC","fam":"白色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"蓝白配色","en":"Blue and White","hex":"","fam":"复合配色","n":1,"in":false,"share":0.2,"rk":false,"try":true,"bg":"linear-gradient(135deg,#4a7fb5 0% 50%,#ffffff 50% 100%)"},{"cn":"雷暴蓝","en":"THUNDER BLUE","hex":"#3B4767","fam":"蓝色系","n":1,"in":false,"share":0.2,"rk":false,"try":true},{"cn":"黄色","en":"Yellow","hex":"#E3C24C","fam":"黄色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"鼠尾草绿","en":"SEDONA SAGE","hex":"#8C9489","fam":"绿色系","n":1,"in":false,"share":0.2,"rk":false,"try":true}]},{"cat":"T恤polo","total":104,"ncolor":33,"denim":0,"colors":[{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":64,"in":true,"share":13.1,"rk":true,"try":false},{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":60,"in":true,"share":12.3,"rk":true,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":60,"in":true,"share":12.3,"rk":false,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":29,"in":true,"share":6.0,"rk":true,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":29,"in":true,"share":6.0,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":24,"in":false,"share":4.9,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":23,"in":true,"share":4.7,"rk":false,"try":false},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":19,"in":true,"share":3.9,"rk":false,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":18,"in":true,"share":3.7,"rk":false,"try":false},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":17,"in":true,"share":3.5,"rk":true,"try":false},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":16,"in":true,"share":3.3,"rk":true,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":13,"in":true,"share":2.7,"rk":false,"try":false},{"cn":"深灰色","en":"Dark Grey","hex":"#484A4D","fam":"灰色系","n":13,"in":true,"share":2.7,"rk":false,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":13,"in":true,"share":2.7,"rk":false,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":12,"in":true,"share":2.5,"rk":false,"try":false},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":12,"in":true,"share":2.5,"rk":false,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":10,"in":true,"share":2.1,"rk":false,"try":false},{"cn":"黄色","en":"Yellow","hex":"#E3C24C","fam":"黄色系","n":10,"in":true,"share":2.1,"rk":false,"try":false},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":7,"in":true,"share":1.4,"rk":true,"try":false},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":7,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":7,"in":true,"share":1.4,"rk":true,"try":false},{"cn":"蓝白拼色","en":"Blue and White","hex":"","fam":"复合配色","n":6,"in":false,"share":1.2,"rk":false,"try":true,"bg":"linear-gradient(135deg,#4a7fb5 0% 50%,#ffffff 50% 100%)"},{"cn":"灰紫色","en":"Mauve Purple","hex":"#A27E99","fam":"紫色系","n":3,"in":true,"share":0.6,"rk":false,"try":false},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":3,"in":false,"share":0.6,"rk":false,"try":true},{"cn":"橙色","en":"Orange","hex":"#C95423","fam":"橙色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"薄荷绿","en":"Mint Green","hex":"#A2D4BC","fam":"绿色系","n":2,"in":false,"share":0.4,"rk":false,"try":true},{"cn":"豆沙粉","en":"Dusty Pink","hex":"#C78E9A","fam":"粉色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"橄榄绿","en":"Olive Green","hex":"#78824F","fam":"绿色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"粉色","en":"Pink","hex":"#B3696E","fam":"粉色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"紫色","en":"Purple","hex":"#7D5291","fam":"紫色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"红杉色／红棕色","en":"Redwood","hex":"#9B514B","fam":"棕色系","n":1,"in":true,"share":0.2,"rk":false,"try":false},{"cn":"经典红","en":"CLASSICRED","hex":"#BC3637","fam":"红色系","n":1,"in":true,"share":0.2,"rk":false,"try":false}]},{"cat":"连体背带","total":113,"ncolor":31,"denim":0,"colors":[{"cn":"复合/多色","en":"Multicolor","hex":"","fam":"复合配色","n":62,"in":true,"share":12.0,"rk":true,"try":false,"bg":"linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)"},{"cn":"蓝色","en":"Blue","hex":"#326CA8","fam":"蓝色系","n":60,"in":true,"share":11.7,"rk":true,"try":false},{"cn":"棕色","en":"Brown","hex":"#79523B","fam":"棕色系","n":48,"in":true,"share":9.3,"rk":false,"try":false},{"cn":"卡其色","en":"Khaki","hex":"#897A6E","fam":"卡其／米杏色系","n":36,"in":true,"share":7.0,"rk":true,"try":false},{"cn":"藏蓝色","en":"Navy Blue","hex":"#20334F","fam":"蓝色系","n":31,"in":true,"share":6.0,"rk":true,"try":false},{"cn":"黑色","en":"Black","hex":"#181818","fam":"黑色系","n":29,"in":true,"share":5.6,"rk":false,"try":false},{"cn":"绿色","en":"Green","hex":"#418153","fam":"绿色系","n":24,"in":true,"share":4.7,"rk":false,"try":false},{"cn":"中蓝洗水","en":"Medium Wash","hex":"#4A6FA5","fam":"蓝色系","n":23,"in":false,"share":4.5,"rk":false,"try":true},{"cn":"浅蓝洗水","en":"Light Wash","hex":"#A8C0D8","fam":"蓝色系","n":21,"in":false,"share":4.1,"rk":false,"try":true},{"cn":"深绿色","en":"Dark Green","hex":"#274A37","fam":"绿色系","n":20,"in":true,"share":3.9,"rk":false,"try":false},{"cn":"杏色","en":"Apricot","hex":"#ECD5B1","fam":"卡其／米杏色系","n":18,"in":true,"share":3.5,"rk":false,"try":false},{"cn":"黑白配色","en":"Black and White","hex":"","fam":"复合配色","n":15,"in":false,"share":2.9,"rk":false,"try":true,"bg":"linear-gradient(135deg,#1b1b1e 0% 50%,#ffffff 50% 100%)"},{"cn":"红色","en":"Red","hex":"#BC3637","fam":"红色系","n":13,"in":true,"share":2.5,"rk":false,"try":false},{"cn":"黄色","en":"Yellow","hex":"#E3C24C","fam":"黄色系","n":12,"in":true,"share":2.3,"rk":true,"try":false},{"cn":"灰色","en":"Grey","hex":"#858585","fam":"灰色系","n":11,"in":true,"share":2.1,"rk":false,"try":false},{"cn":"婴儿蓝","en":"Baby Blue","hex":"#A6C8E2","fam":"蓝色系","n":10,"in":true,"share":1.9,"rk":false,"try":false},{"cn":"灰蓝色","en":"Dusty Blue","hex":"#77929F","fam":"蓝色系","n":10,"in":false,"share":1.9,"rk":false,"try":true},{"cn":"粉色","en":"Pink","hex":"#B3696E","fam":"粉色系","n":10,"in":true,"share":1.9,"rk":false,"try":false},{"cn":"白色","en":"White","hex":"#F5F4EF","fam":"白色系","n":9,"in":true,"share":1.7,"rk":false,"try":false},{"cn":"军绿色","en":"Army Green","hex":"#60694A","fam":"绿色系","n":7,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"酒红色","en":"Burgundy","hex":"#702D3E","fam":"红色系","n":7,"in":true,"share":1.4,"rk":false,"try":false},{"cn":"浅灰色","en":"Light Grey","hex":"#C5C5C5","fam":"灰色系","n":6,"in":true,"share":1.2,"rk":false,"try":false},{"cn":"米色","en":"Beige","hex":"#D8CECD","fam":"卡其／米杏色系","n":6,"in":true,"share":1.2,"rk":true,"try":false},{"cn":"驼色","en":"Camel","hex":"#B99160","fam":"棕色系","n":6,"in":true,"share":1.2,"rk":false,"try":false},{"cn":"咖啡棕色","en":"Coffee Brown","hex":"#59412D","fam":"棕色系","n":5,"in":true,"share":1.0,"rk":false,"try":false},{"cn":"深蓝洗水","en":"Dark Wash","hex":"#2F4A73","fam":"蓝色系","n":5,"in":false,"share":1.0,"rk":false,"try":true},{"cn":"宝蓝色","en":"Royal Blue","hex":"#3156BC","fam":"蓝色系","n":4,"in":true,"share":0.8,"rk":true,"try":false},{"cn":"橙色","en":"Orange","hex":"#C95423","fam":"橙色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"紫色","en":"Purple","hex":"#7D5291","fam":"紫色系","n":2,"in":true,"share":0.4,"rk":false,"try":false},{"cn":"蓝白配色","en":"Blue and White","hex":"","fam":"复合配色","n":2,"in":true,"share":0.4,"rk":false,"try":false,"bg":"linear-gradient(135deg,#4a7fb5 0% 50%,#ffffff 50% 100%)"},{"cn":"薄荷绿","en":"Mint Green","hex":"#A2D4BC","fam":"绿色系","n":1,"in":true,"share":0.2,"rk":false,"try":false}]}];</script>
+<script>(function () {
+  'use strict';
+
+  /* ---------------- 近似色映射（示意，非实物色） ---------------- */
+  var CMAP = {
+    '黑': '#17171a', '黑色': '#17171a',
+    '白': '#ffffff', '白色': '#ffffff',
+    '米白': '#f3ecdd', '奶白': '#f8f3e6', '象牙白': '#f5f0e2', '灰白': '#e6e4de',
+    '米': '#e4d8bf', '亚麻': '#d8c9ad', '麦色': '#dcc49a',
+    '杏': '#eab98c', '杏色': '#eab98c', '驼': '#c2a077', '驼色': '#c2a077',
+    '浅棕': '#a87d55', '棕': '#7a5539', '咖啡': '#5f4630', '深棕': '#422c1f', '巧克力': '#43291a', '铁锈': '#9c4a25',
+    '卡其': '#b9a37a', '板岩灰': '#8b8f93',
+    '红': '#c62f2f', '红色': '#c62f2f', '深红': '#8a1d24', '砖红': '#a8452c', '猩红': '#c0143c',
+    '酒红': '#6c1f2f', '粉红': '#efb3c0', '玫红': '#c74f7d', '红橙': '#e05a24', '橙红': '#df4a29',
+    '橙': '#e5842b', '橙色': '#e5842b',
+    '黄': '#e8c62f', '黄色': '#e8c62f', '柠檬黄': '#e3e13c', '荧光黄': '#d6e83f', '姜黄': '#c99a1d',
+    '绿': '#3f7d51', '绿色': '#3f7d51', '深绿': '#224d33', '海绿': '#2f7d68', '草绿': '#5c9b45',
+    '橄榄绿': '#6b6b38', '军绿': '#4c5433', '抹茶绿': '#9aab6b', '黄绿': '#b4c95b', '翡翠绿': '#2b8b6d', '祖母绿': '#1c6a4c',
+    '蓝': '#2f6cb0', '蓝色': '#2f6cb0', '深天蓝': '#3f97c4', '天蓝': '#7cbbe0', '浅蓝': '#aacbe6', '粉蓝': '#bdd7e9',
+    '宝蓝': '#1b48a0', '海蓝': '#2f6f9e', '亮蓝': '#2e86dd', '鲜蓝': '#1f74d6', '湖蓝': '#2aa5c2', '孔雀蓝': '#12707a',
+    '亮钢蓝': '#4a7fa8', '藏青': '#1e2c50', '藏青/深蓝': '#1e2c50',
+    '紫罗兰': '#7a5a9c', '浅紫': '#cbb7da', '浅绿': '#a9c99a',
+    '灰': '#8a8a8a', '灰色': '#8a8a8a', '浅灰': '#cbcbcb', '深灰': '#5a5a5a', '银灰': '#b7bcc1',
+    '太空灰': '#6a6e73', '青铜': '#8c6a4a',
+    /* 以下为原表出现但旧色表缺失的颜色，补齐以免全部落到灰褐色兜底色 */
+    '卡其色': '#b9a37a', '卡其色（向日葵图案）': '#c4ad74', '卡其': '#b9a37a',
+    '军绿色': '#4c5433', '深绿色': '#224d33', '鼠尾草绿': '#9caf88', '薄荷绿': '#9fd9c1',
+    '棕色': '#7a5539', '咖啡棕色': '#5f4630', '巧克力棕': '#43291a', '巧克力棕色': '#43291a',
+    '摩卡棕色': '#7a5a45', '铁锈棕色': '#9c4a25', '红棕色': '#8c4a34', '焦橙色': '#c05a2a',
+    '米色': '#e4d8bf', '奶白色': '#f8f3e6', '浅灰色': '#cbcbcb', '深灰色': '#5a5a5a',
+    '宝蓝色': '#1b48a0', '海军蓝': '#1b2f4d', '藏蓝色': '#1e2c50', '冰钴蓝': '#4a90c9',
+    '雷暴蓝': '#3c5a7a', '灰蓝色': '#8ca3bb', '浅蓝色': '#aacbe6',
+    '浅洗牛仔': '#b7cfe0', '浅水洗': '#b7cfe0', '浅水洗蓝': '#b7cfe0', '浅蓝洗水': '#c3d9e8',
+    '中洗牛仔': '#6d94b8', '中水洗蓝': '#6d94b8', '中蓝洗水': '#6d94b8',
+    '深洗牛仔': '#3f5c78', '深水洗': '#3f5c78', '深蓝洗水': '#3f5c78',
+    '粉色': '#efb3c0', '浅粉': '#f4c6cf', '浅粉色': '#f4c6cf', '亮粉': '#f38fb0',
+    '婴粉': '#f6c9d2', '豆沙粉': '#cfa3a3', '经典红': '#c62f2f', '酒红色': '#6c1f2f',
+    '紫色': '#7a4f92', '灰紫色': '#8e8aa0',
+    '粉色（女孩生日图案）': '#efb3c0', '粉色（奶牛图案）': '#efb3c0',
+    '粉色（小鸡图案）': '#efb3c0', '粉色（爱心图案）': '#efb3c0',
+    '蓝色（男孩生日图案）': '#2f6cb0',
+    '多色': 'linear-gradient(135deg,#e8b26a 0%,#5c8fbf 30%,#8fbf8a 55%,#c98fa6 78%,#d9c46a 100%)',
+    '黑白配色': 'linear-gradient(135deg,#1b1b1e 0%,#1b1b1e 50%,#ffffff 50%,#ffffff 100%)',
+    '黑白': 'linear-gradient(135deg,#1b1b1e 0%,#1b1b1e 50%,#ffffff 50%,#ffffff 100%)',
+    '灰蓝': '#8ca3bb',
+    '红白配色': 'linear-gradient(135deg,#c62f2f 0%,#c62f2f 50%,#ffffff 50%,#ffffff 100%)',
+    '蓝白配色': 'linear-gradient(135deg,#4a7fb5 0%,#4a7fb5 50%,#ffffff 50%,#ffffff 100%)',
+    '蓝白拼色': 'linear-gradient(135deg,#4a7fb5 0%,#4a7fb5 50%,#ffffff 50%,#ffffff 100%)',
+    '蓝白': 'linear-gradient(135deg,#4a7fb5 0%,#4a7fb5 50%,#ffffff 50%,#ffffff 100%)',
+    '复合/多色': 'linear-gradient(135deg,#e8b26a 0%,#5c8fbf 38%,#8fbf8a 68%,#c98fa6 100%)',
+    '花色': 'linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)',
+    '花色/混色': 'linear-gradient(135deg,#d98b6a 0%,#7fa9c9 35%,#a9c27a 65%,#c98fb0 100%)',
+    '灰白相间': 'linear-gradient(135deg,#d8d8d8 0%,#f4f4f4 55%,#c2c2c2 100%)'
+  };
+
+  function hasColor(n) { return Object.prototype.hasOwnProperty.call(CMAP, n); }
+  function isGrad(n) { var v = CMAP[n]; return typeof v === 'string' && v.indexOf('gradient') === 0; }
+
+  function swatch(name) {
+    var v = CMAP[name] || 'linear-gradient(135deg,#d9d3c6,#bdb6a7)';
+    var style = isGrad(name) || !hasColor(name) ? 'background:' + v : 'background:' + v;
+    var cls = (isGrad(name) || !hasColor(name)) ? 'sw grad' : 'sw';
+    return '<span class="' + cls + '" style="' + style + '"></span>';
+  }
+  function chip(name, extraCls) {
+    var cls = 'chip' + (isGrad(name) || !hasColor(name) ? ' grad' : '') + (extraCls ? ' ' + extraCls : '');
+    return '<span class="' + cls + '" data-color="' + esc(name) + '">' + swatch(name) + esc(name) + '</span>';
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function $(id) { return document.getElementById(id); }
+
+  var S1 = DATA.section1, S2 = DATA.section2, S3 = DATA.section3,
+      S4 = DATA.section4, S5 = DATA.section5;
+
+  /* ---------------- S1 门槛时间轴 ---------------- */
+  var TL = [
+    { p: 'P0', from: 0, to: 7, flex: 7, name: '7 日新款', desc: '近 7 天上架的热卖款，最高优先级' },
+    { p: 'P1', from: 8, to: 30, flex: 23, name: '当月新款', desc: '8–30 天内上架的热卖款' },
+    { p: 'P2', from: 31, to: 90, flex: 60, name: '3 个月内款', desc: '31–90 天内上架的热卖款' },
+    { p: 'P4', from: 91, to: 305, flex: 90, name: '长青款', desc: '91–305 天区间的非应季长青款' },
+    { p: 'P3', from: 306, to: 425, flex: 70, name: '去年应季款', desc: '去年同期上架、去年同期热卖（365±60 天）' },
+    { p: 'P5', from: 426, to: null, flex: 60, name: '老款', desc: '上架超过 1 年，近期仍在热卖' }
+  ];
+
+  (function renderS1() {
+    $('s1Timeline').innerHTML =
+      '<div class="tl-cap">按上架时间由近到远，从左到右；P4 长青款的在架区间早于 P3 去年应季款，故排在前面</div>' +
+      '<table class="tl-bar"><tbody><tr>' + TL.map(function (t) {
+        return '<td class="tl-seg p-' + t.p.toLowerCase() + '"><b>' + t.p + '</b>' +
+          '<span>' + (t.to === null ? t.from + ' 天以上' : t.from + '–' + t.to + ' 天') + '</span></td>';
+      }).join('') + '</tr></tbody></table>';
+
+    var lc = TL.map(function (t) {
+      return '<div class="tl-item"><span class="tl-dot p-' + t.p.toLowerCase() + '"></span>' +
+        '<b>' + t.p + '</b><span class="nm">' + esc(t.name) + '</span>' +
+        '<span class="ds">' + esc(t.desc) + '</span></div>';
+    });
+    $('s1Legend').innerHTML = '<table class="grid3"><tbody>' + [0, 3].map(function (s) {
+      return '<tr>' + lc.slice(s, s + 3).map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
+    }).join('') + '</tbody></table>';
+
+    var h = S1.header, rows = S1.rows;
+    var html = '<div class="tbl-wrap"><table><thead><tr>' +
+      h.map(function (x, i) {
+        var cl = i === 0 ? ' class="cat"' : (i === h.length - 1 ? ' class="num"' : '');
+        return '<th' + cl + '>' + esc(x) + '</th>';
+      }).join('') +
+      '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      html += '<tr>' + r.map(function (c, i) {
+        if (i === 3) {
+          var cls = 'tag p-' + String(c).toLowerCase() + (c === 'P0' || c === 'P1' ? ' hot' : '');
+          return '<td><span class="' + cls + '">' + esc(c) + '</span></td>';
+        }
+        var txt = (i === 5) ? String(c).replace(/[（(][^）)]*[）)]/g, '').trim() : c;
+        var cl = i === 0 ? ' class="cat"' : (i === 5 ? ' class="num"' : '');
+        return '<td' + cl + '>' + esc(txt) + '</td>';
+      }).join('') + '</tr>';
+    });
+    $('s1Table').innerHTML = html + '</tbody></table></div>';
+  })();
+
+  /* ---------------- S2 复色数量 ---------------- */
+  var s2q = '';
+
+  function dots(lo, hi) {
+    var out = '';
+    for (var i = 1; i <= 6; i++) out += '<i class="' + (i >= lo && i <= hi ? 'on' : '') + '"></i>';
+    return '<div class="dots">' + out + '</div>';
+  }
+
+  function renderS2() {
+    var list = S2.slice();
+    if (s2q) list = list.filter(function (r) { return r.cat.toLowerCase().indexOf(s2q) >= 0; });
+    var body = $('s2Body');
+    if (!list.length) { body.innerHTML = '<div class="empty show">没有匹配的品类</div>'; return; }
+    var cells = list.map(function (r) {
+      var range = r.range || (r.width ? String(r.width) : '');
+      var isRange = range.indexOf('-') > 0;
+      var lo = isRange ? +range.split('-')[0] : +range;
+      var hi = isRange ? +range.split('-')[1] : +range;
+      var shown = isRange ? lo + '–' + hi : String(lo);
+      return '<div class="wc">' +
+        '<div class="wc-name">' + esc(r.cat) + '</div>' +
+        '<div class="wc-num">' + esc(shown) + '<s>色</s></div>' +
+        dots(lo, hi) +
+        '</div>';
+    });
+    var rows = '';
+    for (var i = 0; i < cells.length; i += 3) {
+      rows += '<tr>' + cells.slice(i, i + 3).map(function (c) { return '<td>' + c + '</td>'; }).join('') +
+        new Array(4 - Math.min(3, cells.length - i)).join('<td class="ph"></td>') + '</tr>';
+    }
+    body.innerHTML = '<table class="wgrid-t"><tbody>' + rows + '</tbody></table>';
+    $('q2hint').textContent = list.length === S2.length ? '' : '匹配 ' + list.length + ' 个';
+  }
+
+  /* ---------------- S3 外网色彩调研（汇总 / 排名 / 站内缺色 / 颜色明细） ---------------- */
+  var s3i = 0;
+  var s3open = false;
+
+  function s3Swatch(c) {
+    if (c.hex) return '<span class="sw" style="background:' + c.hex + '"></span>';
+    if (c.bg) return '<span class="sw mix" title="' + esc(c.cn) + '" style="background:' + c.bg + '"></span>';
+    return '<span class="sw mix" title="混色/拼色"></span>';
+  }
+  function s3Pct(v) { return v.toFixed(1) + '%'; }
+  function s3Mk(c, small) {
+    var h = '';
+    if (c.rk) h += '<span class="mk">复色</span>';
+    if (c.try) h += '<span class="mk try">可尝试复色</span>';
+    return h;
+  }
+
+  function renderS3Tabs() {
+    $('s3Tabs').innerHTML = S31.map(function (c, i) {
+      return '<button data-i="' + i + '" class="' + (i === s3i ? 'on' : '') + '">' + esc(c.cat) + '</button>';
+    }).join('');
+  }
+
+  function renderS3() {
+    var d = S31[s3i] || { colors: [] };
+    var cols = d.colors || [];
+    var mx = cols.length ? cols[0].share : 1;
+
+
+    var top5 = cols.slice(0, 5);
+    var missAll = cols.filter(function (c) { return !c.in; })
+      .sort(function (a, b) { return b.share - a.share; });
+    var miss5 = missAll.slice(0, 5);
+
+    function item(c, i, isMiss) {
+      return '<div class="sumit">' + s3Swatch(c) +
+        '<span class="nm"><span>' + esc(c.cn) + '</span>' + s3Mk(c) + '</span>' +
+        '<i class="pc">' + s3Pct(c.share) + '</i></div>';
+    }
+    var sum = '<div class="sumwrap">' +
+      '<div class="sumcard"><div class="sumhd"><b>站外 TOP5 色</b><span>按覆盖商品数</span></div>' +
+      '<div class="sumlist">' + top5.map(function (c, i) { return item(c, i, !c.in); }).join('') + '</div></div>' +
+      '<div class="sumcard"><div class="sumhd"><b>站外有 · 站内缺 TOP5</b><span>按覆盖商品数</span></div>' +
+      '<div class="sumlist">' +
+      (miss5.length ? miss5.map(function (c, i) { return item(c, i, true); }).join('')
+        : '<div class="sumempty2">本品类外网色彩站内均已覆盖，没有站内缺色。</div>') +
+      '</div></div></div>' +
+      '<div class="mklegend"><span><span class="mk">复色</span>站内需求色与站外热度色的交集</span>' +
+      '<span><span class="mk try">可尝试复色</span>站内没有这个颜色，可作为加色尝试</span></div>';
+
+    var list = s3open ? cols : cols.slice(0, 12);
+    var rank = list.map(function (c, i) {
+      return '<div class="rkrow">' +
+        '<i class="no">' + (i + 1) + '</i>' + s3Swatch(c) +
+        '<span class="nm">' + esc(c.cn) + '<em>' + esc(c.en) + '</em></span>' +
+        '<span class="tags"><span class="tg ' + (c.in ? 'in' : 'no2') + '">' + (c.in ? '站内已有' : '站内缺') + '</span></span>' +
+        '<span class="bar"><i style="width:' + Math.max(3, Math.round(c.share / mx * 100)) + '%"></i></span>' +
+        '<b class="pc">' + s3Pct(c.share) + '</b></div>';
+    }).join('');
+    var more = cols.length > 12
+      ? '<button class="more-btn" id="s3More">' + (s3open ? '收起，只看前 12 色' : '展开全部 ' + cols.length + ' 色') + '</button>'
+      : '';
+
+    var mxm = missAll.length ? missAll[0].share : 1;
+    var missHtml = missAll.length ? missAll.map(function (c, i) {
+      return '<div class="rkrow miss">' +
+        '<i class="no">' + (i + 1) + '</i>' + s3Swatch(c) +
+        '<span class="nm">' + esc(c.cn) + '<em>' + esc(c.en) + '</em></span>' +
+        '<span class="tags"><span class="tg no2">可尝试复色</span></span>' +
+        '<span class="bar"><i style="width:' + Math.max(6, Math.round(c.share / mxm * 100)) + '%"></i></span>' +
+        '<b class="pc">' + s3Pct(c.share) + '</b></div>';
+    }).join('') : '<div class="miss-none">本品类外网色彩站内均已覆盖，没有站内缺色。</div>';
+
+    var cards = cols.map(function (c) {
+      return '<div class="c31' + (c.in ? '' : ' miss') + '" title="' + esc(c.cn) + ' / ' + esc(c.en) + '">' +
+        s3Swatch(c) + '<span class="tx"><b>' + esc(c.cn) + '</b><em>' + esc(c.en) + '</em></span></div>';
+    }).join('');
+
+    $('s3Table').innerHTML = sum +
+      '<div class="b31"><div class="b31h"><b>① 色彩排名</b><span>按外网覆盖商品数排序 · 站内已有 / 站内缺 · 占比合计 100%</span></div>' +
+      '<div class="rk">' + rank + '</div>' + more + '</div>' +
+      '<div class="b31"><div class="b31h"><b>② 站内缺色</b><span>外网有、站内没有这个颜色 · 建议作为加色尝试</span></div>' +
+      '<div class="rk">' + missHtml + '</div></div>' +
+      '<div class="b31"><div class="b31h"><b>③ 颜色明细</b><span>本品类全部外网色 · 红框为站内缺</span></div>' +
+      '<div class="grid31">' + cards + '</div></div>';
+
+    var mb = $('s3More');
+    if (mb) mb.onclick = function () { s3open = !s3open; renderS3(); };
+  }
+
+  /* ---------------- S4 ---------------- */
+  var s4q = '';
+
+  var P4 = [
+    '复合/多色几乎是全品类的头号加色，供需缺口最大，优先扩。',
+    '黑色两极分化：打底、外套夹克、棉服羽绒、牛仔裤、功能服仍缺；套装、连体、短裤、毛衣、背心已过剩，可汰换。',
+    '红、白、藏青、粉红等基础色在走量品类普遍过剩，宜收缩，重点转向混色与特色色。'
+  ];
+
+
+
+  var M31 = null;
+  var CAT_ALIAS = { '毛衣/开衫/针织': '毛衣针织开衫', 'T恤/POLO': 'T恤polo',
+                    '棉服/羽绒服': '棉服羽绒服', '卫衣/连帽衫': '卫衣连帽衫', '连体/背带': '连体背带' };
+  function ncat(n) {
+    var t = CAT_ALIAS[n] || String(n);
+    return t.toLowerCase().replace(/[\s·]/g, '').split('/').join('');
+  }
+  function missList(cat) {
+    if (!M31) {
+      M31 = {};
+      S31.forEach(function (d) { M31[ncat(d.cat)] = (d.colors || []).filter(function (c) { return !c.in; }); });
+    }
+    return M31[ncat(cat)] || null;
+  }
+  function missCell(cat) {
+    var ls = missList(cat);
+    if (ls === null) return '<span class="miss-none2">—</span>';
+    if (!ls.length) return '<span class="miss-none2">已覆盖</span>';
+    return '<div class="chips">' + ls.map(function (c) {
+      var sw = '<span class="sw' + (c.bg ? ' grad' : '') + '" style="background:' + (c.bg || c.hex) + '"></span>';
+      return '<span class="chip" data-color="' + esc(c.cn) + '">' + sw + esc(c.cn) + '</span>';
+    }).join('') + '</div>';
+  }
+
+  function renderS4() {
+    var html = '<table id="s4Tbl"><colgroup><col style="width:15%"><col style="width:19.5%"><col style="width:22%"><col style="width:22%"><col style="width:21.5%"></colgroup><thead><tr>' +
+      '<th class="cat">一级品类</th><th class="c-p0">复色 P0</th><th class="c-add">加色 TOP5</th><th class="c-drop">汰换 TOP5</th><th class="c-miss">站外有 · 站内缺</th>' +
+      '</tr></thead><tbody>';
+    S4.rows.forEach(function (r) {
+      var all = r.p0.concat(r.add, r.drop, (missList(r.cat) || []).map(function (c) { return c.cn; })).join('|');
+      html += '<tr data-search="' + esc(r.cat + '|' + all) + '">' +
+        '<td class="cat">' + esc(r.cat) + '</td>' +
+        '<td class="c-p0">' + '<div class="chips">' + r.p0.map(function (c) { return chip(c, 'p0'); }).join('') + '</div></td>' +
+        '<td class="c-add">' + '<div class="chips">' + r.add.map(function (c) { return chip(c); }).join('') + '</div></td>' +
+        '<td class="c-drop">' + '<div class="chips">' + r.drop.map(function (c) { return chip(c); }).join('') + '</div></td>' +
+        '<td class="c-miss">' + missCell(r.cat) + '</td>' +
+        '</tr>';
+    });
+    html += '</tbody></table>';
+    $('s4Table').innerHTML = html;
+    applyS4();
+  }
+
+  var DISP = { '毛衣针织开衫': '毛衣/开衫/针织', 'T恤polo': 'T恤/POLO', '棉服羽绒服': '棉服/羽绒服',
+               '卫衣连帽衫': '卫衣/连帽衫', '连体背带': '连体/背带' };
+  function dispName(n) { return DISP[n] || n; }
+
+  function applyS4() {
+    var tbl = $('s4Tbl');
+    if (!tbl) return;
+    var rows = tbl.querySelectorAll('tbody tr');
+    var shown = 0;
+    Array.prototype.forEach.call(rows, function (tr) {
+      var hit = !s4q || (tr.getAttribute('data-search') || '').toLowerCase().indexOf(s4q) >= 0;
+      tr.style.display = hit ? '' : 'none';
+      if (hit) shown++;
+      Array.prototype.forEach.call(tr.querySelectorAll('.chip'), function (c) {
+        var m = s4q && c.getAttribute('data-color').toLowerCase().indexOf(s4q) >= 0;
+        c.classList.toggle('hit', !!m);
+      });
+    });
+    $('s4Empty').classList.toggle('show', shown === 0);
+    var badge = $('qCount');
+    if (s4q) { badge.textContent = shown + ' / ' + rows.length + ' 品类'; badge.classList.add('show'); }
+    else { badge.classList.remove('show'); }
+  }
+
+  /* ---------------- S5 ---------------- */
+  var S5_MODES = S5.headers.map(function (h) { return h.replace(/\s*\n\s*/g, ''); });
+  var S5_FULL = S5_MODES.length;
+
+  // 每个季节声明自己有哪些视角；win 为该视角的时间窗口（必须写明）
+  var SEASONS = [
+    { name: '全表对照', views: [], overview: true },
+    {
+      name: '9月',
+      views: [
+        { mode: 0, short: '9月 TOP5', title: '9月 TOP5',
+          desc: '9 月卖得最好的 5 个色，按热度从高到低排。' }
+      ]
+    },
+    {
+      name: '冬季',
+      views: [
+        { mode: 1, short: '冬季 TOP5', title: '冬季 TOP5',
+          desc: '整个冬季卖得最好的 5 个色，按热度从高到低排。' },
+        { mode: 2, short: '趋势上升 · 11→12月', win: '季初 11 月 → 季中 12 月', title: '冬季趋势上升 TOP5',
+          desc: '冬季内部自然走强的 5 个色，看的是 11 月到 12 月的变化，不含换季干扰。' },
+        { mode: 3, short: '换季前移 · 12→1月', win: '季中 12 月 → 季末 1 月', title: '冬季换季前移 TOP5',
+          desc: '冬季末提前起量、为春季预埋的 5 个色，看的是 12 月到次年 1 月的变化。' }
+      ]
+    },
+    {
+      name: '夏季',
+      views: [
+        { mode: 4, short: '夏季 TOP5', title: '夏季 TOP5',
+          desc: '整个夏季卖得最好的 5 个色，按热度从高到低排。' },
+        { mode: 5, short: '趋势上升 · 6→7月', win: '季初 6 月 → 季中 7 月', title: '夏季趋势上升 TOP5',
+          desc: '夏季内部自然走强的 5 个色，看的是 6 月到 7 月的变化，不含换季干扰。' },
+        { mode: 6, short: '换季前移 · 7→8月', win: '季中 7 月 → 季末 8 月', title: '夏季换季前移 TOP5',
+          desc: '夏季末提前起量、为秋冬预埋的 5 个色，看的是 7 月到 8 月的变化。' }
+      ]
+    }
+  ];
+
+  var s5s = 0, s5sub = 0;
+
+  function curSeason() { return SEASONS[s5s] || SEASONS[0]; }
+  function curView() { return curSeason().views[s5sub] || curSeason().views[0]; }
+
+  function renderS5Segs() {
+    $('s5Mode').innerHTML = SEASONS.map(function (s, i) {
+      return '<button data-i="' + i + '" class="' + (i === s5s ? 'on' : '') + '">' + esc(s.name) + '</button>';
+    }).join('');
+  }
+
+  // 细分视角：9 月换季（单一视角）与全表对照不显示这一组
+  function syncSub() {
+    var sc = curSeason(), sub = $('s5Sub'), lab = $('s5SubLabel');
+    var show = sc.views.length >= 2;
+    if (sub) sub.style.display = show ? '' : 'none';
+    if (lab) lab.style.display = show ? '' : 'none';
+    if (!show) return;
+    sub.innerHTML = sc.views.map(function (v, k) {
+      return '<button data-k="' + k + '" class="' + (k === s5sub ? 'on' : '') + '">' + esc(v.short) + '</button>';
+    }).join('');
+  }
+
+  // 口径说明卡：只渲染当前季节实际存在的视角，并写明时间窗口
+  function renderLegend() {
+    var sc = curSeason(), box = $('s5Legend');
+    if (!box) return;
+    if (!sc.views.length) { box.style.display = 'none'; box.innerHTML = ''; return; }
+    box.style.display = '';
+    box.innerHTML = sc.views.map(function (v, k) {
+      return '<div class="lg' + (k === s5sub ? ' on' : '') + '">' +
+        '<b>' + esc(v.title) + '</b>' +
+        (v.win ? '<i class="win">' + esc(v.win) + '</i>' : '') +
+        '<span>' + esc(v.desc) + '</span></div>';
+    }).join('');
+    box.className = 'legend3 n' + sc.views.length;
+  }
+
+  function renderS5() {
+    renderLegend();
+    var sc = curSeason(), v = curView(), vb = $('s5View');
+
+    if (!sc.views.length) {
+      var html = '<div class="tbl-wrap"><table class="s5tbl"><thead><tr><th class="cat">一级品类</th>' +
+        S5.headers.map(function (h) { return '<th>' + esc(h.replace(/\n/g, ' ')) + '</th>'; }).join('') + '</tr></thead><tbody>';
+      S5.rows.forEach(function (r) {
+        html += '<tr><td class="cat">' + esc(r.cat) + '</td>' + r.cells.map(function (c) {
+          return '<td><div class="chips">' + c.map(function (x) { return chip(x); }).join('') + '</div></td>';
+        }).join('') + '</tr>';
+      });
+      $('s5Body').innerHTML = html + '</tbody></table></div>';
+      if (vb) vb.innerHTML = '<span class="vnow">全表对照</span>' +
+        '<span class="vsub">一屏横向对照全部 ' + S5.headers.length + ' 个视角，每格颜色按热度从上到下排列；点上方 9月 / 冬季 / 夏季 可单独看某一阶段的 TOP5</span>';
+      $('s5Hint').textContent = '';
+      return;
+    }
+
+    if (vb) vb.innerHTML = '<span class="vnow">' + esc(v.title) + '</span>' +
+      (v.win ? '<span class="vwin">' + esc(v.win) + '</span>' : '') +
+      '<span class="vsub">每行颜色按热度从左到右排列</span>';
+
+    var cards = S5.rows.map(function (r) {
+      var cells = r.cells[v.mode] || [];
+      return '<div class="rank-card"><div class="h"><span class="n">' + esc(r.cat) + '</span>' +
+        '<span class="m">' + cells.length + ' 色</span></div>' +
+        '<div class="chips full">' + cells.map(function (c, k) {
+          return chip(c, k === 0 ? 'top' : '');
+        }).join('') + '</div></div>';
+    });
+    var rk = '';
+    for (var i = 0; i < cards.length; i += 3) {
+      rk += '<tr>' + cards.slice(i, i + 3).map(function (c) { return '<td>' + c + '</td>'; }).join('') +
+        new Array(4 - Math.min(3, cards.length - i)).join('<td class="ph"></td>') + '</tr>';
+    }
+    $('s5Body').innerHTML = '<table class="grid3 rank-grid"><tbody>' + rk + '</tbody></table>';
+    $('s5Hint').textContent = '';
+  }
+
+  renderS5Segs(); syncSub(); renderS5();
+
+  /* ---------------- events ---------------- */
+  // S2 controls
+  var q2 = $('q2');
+  if (q2) q2.addEventListener('input', function () { s2q = this.value.trim().toLowerCase(); renderS2(); });
+
+  // S3 外网品类切换
+  $('s3Tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    s3i = parseInt(b.getAttribute('data-i'), 10); s3open = false;
+    Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle('on', x === b); });
+    renderS3();
+    markSeen('c' + s3i);
+    var cc = seenCount('c', S3.length), ce = $('s3Cnt');
+    if (ce) ce.textContent = '已看 ' + cc + '/' + S3.length;
+    var cleft = S3.length - cc;
+    toast(cleft > 0
+      ? '已切到「' + S3[s3i] + '」· 还有 <b>' + cleft + ' 个品类</b>没看'
+      : '已切到「' + S3[s3i] + '」· 8 个品类都看过了');
+  });
+
+  // 明细页子分区
+  var subTabs = Array.prototype.slice.call(document.querySelectorAll('#subTabs button'));
+  var subPanes = subTabs.map(function (b) { return $(b.getAttribute('data-s')); });
+  $('subTabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var i = subTabs.indexOf(b);
+    subTabs.forEach(function (x, k) { x.classList.toggle('on', k === i); });
+    subPanes.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+    markSeen('s' + i);
+    var sc = seenCount('s', subTabs.length), scEl = $('subCnt');
+    if (scEl) scEl.textContent = '已看 ' + sc + '/' + subTabs.length;
+    var sleft = subTabs.length - sc;
+    toast(sleft > 0
+      ? '已切到「' + subTabs[i].textContent + '」· 还有 <b>' + sleft + ' 个子页</b>没看'
+      : '已切到「' + subTabs[i].textContent + '」· 3 个子页都看过了');
+  });
+
+  // S4
+  $('q').addEventListener('input', function () { s4q = this.value.trim().toLowerCase(); applyS4(); });
+  $('s4Table').addEventListener('click', function (e) {
+    var c = e.target.closest('.chip'); if (!c) return;
+    var v = c.getAttribute('data-color');
+    var inp = $('q');
+    if (inp.value.trim() === v) { inp.value = ''; s4q = ''; } else { inp.value = v; s4q = v.toLowerCase(); }
+    applyS4();
+
+  });
+
+  // S5
+  $('s5Mode').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    s5s = parseInt(b.getAttribute('data-i'), 10);
+    s5sub = 0;
+    Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle('on', x === b); });
+    syncSub();
+    renderS5();
+    markSeen('v' + s5s);
+    toast(curSeason().overview
+      ? '全表对照：一屏横向看全部 <b>' + S5.headers.length + ' 个视角</b>，点上方 9月 / 冬季 / 夏季 可单独看某一阶段'
+      : '已切到「' + esc(curSeason().name) + '」· 下方可再切换 本季 TOP5 / 趋势上升 / 换季前移');
+  });
+  $('s5Sub').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    s5sub = parseInt(b.getAttribute('data-k'), 10);
+    Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle('on', x === b); });
+    renderS5();
+    var vv = curView();
+    toast('当前视角：<b>' + vv.title + '</b>' + (vv.win ? '（' + vv.win + '）' : ''));
+  });
+
+  /* ---------------- theme / progress / nav ---------------- */
+  var root = document.documentElement;
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem('rpt-theme'); } catch (err) { }
+  if (savedTheme) root.setAttribute('data-theme', savedTheme);
+  function syncThemeIcon() {
+    $('themeIcon').textContent = root.getAttribute('data-theme') === 'dark' ? '☾' : '◐';
+  }
+  syncThemeIcon();
+  $('themeBtn').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('rpt-theme', next); } catch (err) { }
+    syncThemeIcon();
+  });
+
+  /* ---------------- tabs ---------------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('#tabs button'));
+  var panels = tabs.map(function (b) { return document.querySelector('#' + b.getAttribute('data-p')); });
+
+  /* ---------- 浏览提醒 ---------- */
+  var toastEl = $('toast'), toastTimer = null;
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.innerHTML = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 3000);
+  }
+  // 进度只在本次打开内累计，不写入本地存储（避免一打开就显示"已看 3/3"）
+  var seen = {};
+  function markSeen(k) { seen[k] = 1; }
+  function seenCount(prefix, n) { var c = 0, i; for (i = 0; i < n; i++) if (seen[prefix + i]) c++; return c; }
+
+  function paintNavSeen() {
+    tabs.forEach(function (b, k) {
+      b.classList.toggle('seen', !!seen['t' + k]);
+      if (!b.querySelector('.nd')) {
+        var d = document.createElement('span'); d.className = 'nd'; b.appendChild(d);
+      }
+    });
+    var c = seenCount('t', tabs.length);
+    var el = $('navCnt');
+    if (el) el.innerHTML = '已看 <i>' + c + '</i>/' + tabs.length;
+  }
+
+  function showPanel(i, smooth) {
+    var prev = tabs.findIndex(function (b) { return b.classList.contains('on'); });
+    tabs.forEach(function (b, k) { b.classList.toggle('on', k === i); });
+    panels.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+    if (smooth) window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    markSeen('t' + i); paintNavSeen();
+    if (smooth && prev !== i) {
+      var left = tabs.length - seenCount('t', tabs.length);
+      var nm = tabs[i].querySelector('b').textContent;
+      toast(left > 0
+        ? '已切到「' + nm + '」· 还有 <b>' + left + ' 个部分</b>没看，标签栏可继续切换'
+        : '已切到「' + nm + '」· 3 个部分都看过了');
+    }
+  }
+  $('tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    showPanel(tabs.indexOf(b), true);
+  });
+  document.addEventListener('keydown', function (e) {
+    var cur = tabs.findIndex(function (b) { return b.classList.contains('on'); });
+    if (e.key === 'ArrowRight') showPanel((cur + 1) % tabs.length, false);
+    if (e.key === 'ArrowLeft') showPanel((cur - 1 + tabs.length) % tabs.length, false);
+  });
+
+  /* ---------------- boot ---------------- */
+  S2.forEach(function (r, i) { r._i = i; });
+  [renderS2, renderS3Tabs, renderS3, renderS4, renderS5].forEach(function (fn) {
+    try { fn(); } catch (err) { if (window.console) console.warn('render skipped', err); }
+  });
+  paintNavSeen();
+  markSeen('c' + s3i);
+  var ce0 = $('s3Cnt');
+  if (ce0) ce0.textContent = '已看 ' + seenCount('c', S3.length) + '/' + S3.length;
+  markSeen('v' + s5s);
+  var s0 = document.querySelector('#subTabs button.on');
+  if (s0) {
+    var sTabsAll = Array.prototype.slice.call(document.querySelectorAll('#subTabs button'));
+    markSeen('s' + sTabsAll.indexOf(s0));
+    var se = $('subCnt'); if (se) se.textContent = '已看 ' + seenCount('s', sTabsAll.length) + '/' + sTabsAll.length;
+  }
+  showPanel(0, false);
+})();</script>
+<div class="toast" id="toast"></div>
+</body>
+</html>
